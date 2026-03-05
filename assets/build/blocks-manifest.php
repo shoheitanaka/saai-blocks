@@ -6,7 +6,7 @@ return array(
 		'apiVersion' => 3,
 		'name' => 'saai-blocks/breadcrumb-block',
 		'version' => '1.0.0',
-		'title' => 'Breadcrumb Block Pro',
+		'title' => 'Breadcrumb Block',
 		'category' => 'saai-blocks',
 		'icon' => 'admin-site',
 		'description' => 'Display breadcrumb navigation with customizable separators, colors, and SEO-friendly structured data.',
