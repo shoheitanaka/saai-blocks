@@ -1,0 +1,76 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "saai-blocks/hover-image-switcher",
+  "version": "0.1.0",
+  "title": "Image Gallery Swiper",
+  "category": "media",
+  "icon": "format-gallery",
+  "description": "Display a swipeable image gallery with multiple images.",
+  "example": {
+    "attributes": {
+      "images": [
+        {
+          "id": 1,
+          "url": "https://via.placeholder.com/600x800",
+          "alt": "Image 1"
+        },
+        {
+          "id": 2,
+          "url": "https://via.placeholder.com/600x800/0000FF",
+          "alt": "Image 2"
+        }
+      ]
+    }
+  },
+  "attributes": {
+    "images": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object"
+      }
+    },
+    "width": {
+      "type": "number",
+      "default": 300
+    },
+    "height": {
+      "type": "number",
+      "default": 400
+    },
+    "arrowVerticalPosition": {
+      "type": "number",
+      "default": 50
+    },
+    "arrowHorizontalPosition": {
+      "type": "number",
+      "default": 10
+    },
+    "arrowsOutside": {
+      "type": "boolean",
+      "default": false
+    },
+    "dotsOutside": {
+      "type": "boolean",
+      "default": false
+    },
+    "indicatorStyle": {
+      "type": "string",
+      "default": "dots"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "textdomain": "saai-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

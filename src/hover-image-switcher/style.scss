@@ -1,0 +1,183 @@
+
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-telex-blocks {
+	position: relative;
+	display: block;
+
+	.image-gallery-swiper__container {
+		position: relative;
+		width: var(--gallery-width, 300px);
+		height: var(--gallery-height, 400px);
+		overflow: hidden;
+		user-select: none;
+		touch-action: pan-y pinch-zoom;
+	}
+
+	.image-gallery-swiper__images {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.image-gallery-swiper__image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.image-gallery-swiper__image.is-active {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.image-gallery-swiper__nav {
+		position: absolute;
+		top: var(--arrow-vertical-position, 50%);
+		transform: translateY(-50%);
+		background: rgba(0, 0, 0, 0.5);
+		color: white;
+		border: none;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		font-size: 24px;
+		line-height: 1;
+		cursor: pointer;
+		z-index: 10;
+		transition: background 0.2s;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.7);
+		}
+
+		&--prev {
+			left: var(--arrow-horizontal-position, 10px);
+		}
+
+		&--next {
+			right: var(--arrow-horizontal-position, 10px);
+		}
+	}
+
+	&.arrows-outside {
+		.image-gallery-swiper__container {
+			padding-top: 60px;
+		}
+
+		.image-gallery-swiper__nav {
+			top: 10px;
+			transform: none;
+			background: rgba(0, 0, 0, 0.8);
+			border: 2px solid rgba(255, 255, 255, 0.5);
+		}
+
+		.image-gallery-swiper__nav--prev {
+			left: 10px;
+		}
+
+		.image-gallery-swiper__nav--next {
+			right: 10px;
+		}
+	}
+
+	.image-gallery-swiper__dots {
+		position: absolute;
+		bottom: 15px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		gap: 8px;
+		z-index: 10;
+	}
+
+	&.dots-outside {
+		.image-gallery-swiper__container {
+			padding-bottom: 40px;
+		}
+
+		.image-gallery-swiper__dots {
+			bottom: 10px;
+		}
+
+		.image-gallery-swiper__dot {
+			background: rgba(0, 0, 0, 0.6);
+			border: 2px solid rgba(0, 0, 0, 0.3);
+			width: 12px;
+			height: 12px;
+
+			&:hover {
+				background: rgba(0, 0, 0, 0.8);
+			}
+
+			&.is-active {
+				background: rgba(0, 0, 0, 0.9);
+			}
+		}
+	}
+
+	.image-gallery-swiper__dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.5);
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		transition: background 0.2s;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.8);
+		}
+
+		&.is-active {
+			background: white;
+		}
+	}
+
+	&.indicator-bars {
+		.image-gallery-swiper__dot {
+			width: 30px;
+			height: 4px;
+			border-radius: 2px;
+			background: rgba(255, 255, 255, 0.5);
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.8);
+			}
+
+			&.is-active {
+				background: white;
+			}
+		}
+
+		&.dots-outside .image-gallery-swiper__dot {
+			background: rgba(0, 0, 0, 0.4);
+			border: none;
+
+			&:hover {
+				background: rgba(0, 0, 0, 0.6);
+			}
+
+			&.is-active {
+				background: rgba(0, 0, 0, 0.9);
+			}
+		}
+	}
+}

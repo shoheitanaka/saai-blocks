@@ -28,7 +28,10 @@ const requestToHandle = (request) => {
 module.exports = {
 	...defaultConfig,
 	entry: {
-		'saai/admin/overview': '/src/saai/admin/overview/index.js',
+		...typeof defaultConfig.entry === 'function' ? defaultConfig.entry() : defaultConfig.entry,
+		'saai/admin/overview': './src/saai/admin/overview/index.js',
+		'breadcrumb-block': './src/breadcrumb-block/index.js',
+		'hover-image-switcher': './src/hover-image-switcher/index.js',
 	},
 	output: {
 		path: path.resolve( __dirname, 'assets/build' ),

@@ -1,8 +1,8 @@
 <?php
 /**
- * Main class file for Plugin Name
+ * Main class file for SAAI Blocks
  *
- * @package Plugin_Name
+ * @package SAAI_Blocks
  * @since 1.0.0
  */
 
@@ -15,19 +15,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Main Plugin Class
  */
-class Plugin_Name {
+class SAAI_Blocks {
 
 	/**
 	 * Instance of this class.
 	 *
-	 * @var Plugin_Name
+	 * @var SAAI_Blocks
 	 */
 	private static $instance;
 
 	/**
 	 * Get the instance of this class.
 	 *
-	 * @return Plugin_Name
+	 * @return SAAI_Blocks
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {

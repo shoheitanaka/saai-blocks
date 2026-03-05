@@ -1,0 +1,67 @@
+
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+
+.wp-block-telex-blocks {
+	--breadcrumb-text-color: #333333;
+	--breadcrumb-link-color: #0073aa;
+	
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+
+.telex-breadcrumb-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 0.5rem;
+}
+
+.telex-breadcrumb-item {
+	display: inline-flex;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	gap: 0.5rem;
+}
+
+.telex-breadcrumb-link {
+	color: var(--breadcrumb-link-color);
+	text-decoration: none;
+	transition: color 0.2s ease-in-out;
+}
+
+.telex-breadcrumb-link:hover {
+	text-decoration: underline;
+}
+
+.telex-breadcrumb-current {
+	color: var(--breadcrumb-text-color);
+	font-weight: 500;
+}
+
+.telex-breadcrumb-separator {
+	color: var(--breadcrumb-text-color);
+	opacity: 0.6;
+	user-select: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.wp-block-telex-blocks {
+		font-size: 0.8125rem;
+	}
+	
+	.telex-breadcrumb-list {
+		gap: 0.375rem;
+	}
+	
+	.telex-breadcrumb-item {
+		gap: 0.375rem;
+	}
+}

@@ -1,0 +1,16 @@
+
+/**
+ * The following styles get applied inside the editor only.
+ */
+
+.wp-block-telex-blocks {
+	padding: 1rem;
+	background: #f8f9fa;
+	border: 1px dashed #ccc;
+	border-radius: 4px;
+}
+
+.editor-styles-wrapper .telex-breadcrumb-link {
+	pointer-events: none;
+	cursor: default;
+}

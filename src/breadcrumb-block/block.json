@@ -1,0 +1,58 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "saai-blocks/breadcrumb-block",
+	"version": "0.1.0",
+	"title": "Breadcrumb Block Pro",
+	"category": "widgets",
+	"icon": "admin-site",
+	"description": "Display breadcrumb navigation with customizable separators, colors, and SEO-friendly structured data.",
+	"example": {
+		"attributes": {
+			"separator": "/",
+			"showHome": true,
+			"showCurrent": true,
+			"textColor": "#333333",
+			"linkColor": "#0073aa"
+		}
+	},
+	"attributes": {
+		"separator": {
+			"type": "string",
+			"default": "/"
+		},
+		"showHome": {
+			"type": "boolean",
+			"default": true
+		},
+		"showCurrent": {
+			"type": "boolean",
+			"default": true
+		},
+		"homeText": {
+			"type": "string",
+			"default": "Home"
+		},
+		"textColor": {
+			"type": "string",
+			"default": "#333333"
+		},
+		"linkColor": {
+			"type": "string",
+			"default": "#0073aa"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+	"textdomain": "saai-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
