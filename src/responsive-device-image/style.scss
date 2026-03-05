@@ -1,0 +1,50 @@
+
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-saai-block-saai-responsive-device-image {
+	margin: 0;
+	padding: 0;
+}
+
+.responsive-device-image {
+	position: relative;
+	width: 100%;
+	
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.responsive-device-image__smartphone,
+	.responsive-device-image__tablet,
+	.responsive-device-image__pc {
+		display: none;
+	}
+
+	/* Smartphone: 767px and below */
+	@media (max-width: 767px) {
+		.responsive-device-image__smartphone {
+			display: block;
+		}
+	}
+
+	/* Tablet: 768px to 1023px */
+	@media (min-width: 768px) and (max-width: 1023px) {
+		.responsive-device-image__tablet {
+			display: block;
+		}
+	}
+
+	/* PC: 1024px and above */
+	@media (min-width: 1024px) {
+		.responsive-device-image__pc {
+			display: block;
+		}
+	}
+}

@@ -136,22 +136,22 @@ export default function Edit( { attributes, setAttributes } ) {
 				/>
 			</InspectorControls>
 			<nav { ...blockProps } aria-label={ __( 'Breadcrumb', 'saai-blocks' ) }>
-				<ol className="telex-breadcrumb-list">
+				<ol className="saai-breadcrumb-list">
 					{ sampleTrail.map( ( item, index ) => (
-						<li key={ index } className="telex-breadcrumb-item">
+						<li key={ index } className="saai-breadcrumb-item">
 							{ item.url ? (
 								<>
-									<a href={ item.url } className="telex-breadcrumb-link">
+									<a href={ item.url } className="saai-breadcrumb-link">
 										{ item.title }
 									</a>
 									{ index < sampleTrail.length - 1 && (
-										<span className="telex-breadcrumb-separator" aria-hidden="true">
+										<span className="saai-breadcrumb-separator" aria-hidden="true">
 											{ separatorMap[ separator ] }
 										</span>
 									) }
 								</>
 							) : (
-								<span className="telex-breadcrumb-current">{ item.title }</span>
+								<span className="saai-breadcrumb-current">{ item.title }</span>
 							) }
 						</li>
 					) ) }

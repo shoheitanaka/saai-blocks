@@ -92,6 +92,7 @@ class SAAI_Blocks {
 		$blocks = array(
 			'breadcrumb-block',
 			'hover-image-switcher',
+			'responsive-device-image',
 		);
 
 		foreach ( $blocks as $block ) {

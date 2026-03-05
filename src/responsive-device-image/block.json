@@ -1,0 +1,52 @@
+
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "saai-blocks/responsive-device-image",
+	"version": "1.0.0",
+	"title": "Responsive Device Image Block",
+	"category": "saai-blocks",
+	"icon": "format-image",
+	"description": "Display different images for PC, tablet, and smartphone devices",
+	"example": {},
+	"attributes": {
+		"pcImageId": {
+			"type": "number"
+		},
+		"pcImageUrl": {
+			"type": "string"
+		},
+		"pcImageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"tabletImageId": {
+			"type": "number"
+		},
+		"tabletImageUrl": {
+			"type": "string"
+		},
+		"tabletImageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"smartphoneImageId": {
+			"type": "number"
+		},
+		"smartphoneImageUrl": {
+			"type": "string"
+		},
+		"smartphoneImageAlt": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"textdomain": "saai-blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

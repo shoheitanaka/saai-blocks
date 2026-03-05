@@ -139,5 +139,61 @@ return array(
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
 		'viewScript' => 'file:./view.js'
+	),
+	'responsive-device-image' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'saai-blocks/responsive-device-image',
+		'version' => '1.0.0',
+		'title' => 'Responsive Device Image Block',
+		'category' => 'saai-blocks',
+		'icon' => 'format-image',
+		'description' => 'Display different images for PC, tablet, and smartphone devices',
+		'example' => array(
+			
+		),
+		'attributes' => array(
+			'pcImageId' => array(
+				'type' => 'number'
+			),
+			'pcImageUrl' => array(
+				'type' => 'string'
+			),
+			'pcImageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'tabletImageId' => array(
+				'type' => 'number'
+			),
+			'tabletImageUrl' => array(
+				'type' => 'string'
+			),
+			'tabletImageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'smartphoneImageId' => array(
+				'type' => 'number'
+			),
+			'smartphoneImageUrl' => array(
+				'type' => 'string'
+			),
+			'smartphoneImageAlt' => array(
+				'type' => 'string',
+				'default' => ''
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'align' => array(
+				'wide',
+				'full'
+			)
+		),
+		'textdomain' => 'saai-blocks',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css'
 	)
 );

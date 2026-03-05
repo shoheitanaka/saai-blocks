@@ -1,0 +1,106 @@
+
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-saai-block-saai-responsive-device-image {
+	.responsive-device-image-editor {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	.responsive-device-image-upload-area {
+		border: 1px solid #ddd;
+		padding: 16px;
+		border-radius: 4px;
+		background: #fff;
+
+		.upload-label {
+			font-weight: 600;
+			margin-bottom: 12px;
+			font-size: 14px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+
+			.required-badge {
+				background: #d63638;
+				color: #fff;
+				padding: 2px 8px;
+				border-radius: 3px;
+				font-size: 11px;
+				font-weight: 500;
+			}
+
+			.optional-badge {
+				background: #757575;
+				color: #fff;
+				padding: 2px 8px;
+				border-radius: 3px;
+				font-size: 11px;
+				font-weight: 500;
+			}
+		}
+
+		.image-container {
+			margin-bottom: 12px;
+
+			.image-preview {
+				position: relative;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				overflow: hidden;
+
+				&.fallback {
+					img {
+						opacity: 0.4;
+						filter: grayscale(100%);
+					}
+
+					.fallback-overlay {
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						background: rgba(0, 0, 0, 0.75);
+						color: #fff;
+						padding: 8px 16px;
+						border-radius: 4px;
+						font-size: 13px;
+						font-weight: 500;
+						white-space: nowrap;
+					}
+				}
+
+				img {
+					display: block;
+					width: 100%;
+					height: auto;
+				}
+
+				.image-actions {
+					padding: 12px;
+					background: #f0f0f0;
+					display: flex;
+					gap: 8px;
+					justify-content: center;
+				}
+			}
+
+			.components-placeholder {
+				min-height: 200px;
+			}
+		}
+
+		.components-base-control {
+			margin-bottom: 0;
+
+			.components-base-control__field {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

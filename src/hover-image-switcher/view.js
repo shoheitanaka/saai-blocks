@@ -6,7 +6,7 @@
 
 document.addEventListener( 'DOMContentLoaded', function () {
 	const galleries = document.querySelectorAll(
-		'.wp-block-telex-blocks .image-gallery-swiper__container'
+		'.wp-block-saai-blocks .image-gallery-swiper__container'
 	);
 
 	galleries.forEach( function ( gallery ) {

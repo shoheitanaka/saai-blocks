@@ -31,20 +31,20 @@ $structured_data = SAAI_Blocks::get_breadcrumb_structured_data( $trail );
 ?>
 
 <nav <?php echo wp_kses_post( $wrapper_attributes ); ?>>
-	<ol class="telex-breadcrumb-list">
+	<ol class="saai-breadcrumb-list">
 		<?php foreach ( $trail as $index => $item ) : ?>
-			<li class="telex-breadcrumb-item">
+			<li class="saai-breadcrumb-item">
 				<?php if ( ! empty( $item['url'] ) ) : ?>
-					<a href="<?php echo esc_url( $item['url'] ); ?>" class="telex-breadcrumb-link">
+					<a href="<?php echo esc_url( $item['url'] ); ?>" class="saai-breadcrumb-link">
 						<?php echo esc_html( $item['title'] ); ?>
 					</a>
 					<?php if ( $index < count( $trail ) - 1 ) : ?>
-						<span class="telex-breadcrumb-separator" aria-hidden="true">
+						<span class="saai-breadcrumb-separator" aria-hidden="true">
 							<?php echo esc_html( $separator ); ?>
 						</span>
 					<?php endif; ?>
 				<?php else : ?>
-					<span class="telex-breadcrumb-current">
+					<span class="saai-breadcrumb-current">
 						<?php echo esc_html( $item['title'] ); ?>
 					</span>
 				<?php endif; ?>

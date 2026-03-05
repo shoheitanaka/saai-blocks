@@ -32,6 +32,7 @@ module.exports = {
 		'saai/admin/overview': './src/saai/admin/overview/index.js',
 		'breadcrumb-block': './src/breadcrumb-block/index.js',
 		'hover-image-switcher': './src/hover-image-switcher/index.js',
+		'responsive-device-image': './src/responsive-device-image/index.js',
 	},
 	output: {
 		path: path.resolve( __dirname, 'assets/build' ),
