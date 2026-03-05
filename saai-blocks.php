@@ -34,10 +34,7 @@ add_action( 'plugins_loaded', 'saai_blocks_init', 10 );
 
 /**
  * Initialize the plugin.
- *
- * Loads the text domain and initializes the main plugin class.
  */
 function saai_blocks_init() {
-	load_plugin_textdomain( 'saai-blocks', false, plugin_basename( __DIR__ ) . '/i18n' );
 	SAAI_Blocks::instance();
 }
