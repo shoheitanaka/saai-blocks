@@ -26,36 +26,17 @@ if ( ! defined( 'SAAI_BLOCKS_PATH' ) ) {
 	define( 'SAAI_BLOCKS_URL', plugins_url( '/', __FILE__ ) );
 }
 
-	// Load all php files in the includes directory.
-	$includes_dir = __DIR__ . '/includes';
+require_once __DIR__ . '/includes/class-saai-blocks.php';
+require_once __DIR__ . '/includes/admin/class-saai-admin-plugin-name.php';
+require_once __DIR__ . '/includes/saai_framework/class-saai-admin-page.php';
 
-try {
-	$directory_iterator = new RecursiveDirectoryIterator(
-		$includes_dir,
-		FilesystemIterator::SKIP_DOTS
-	);
+add_action( 'plugins_loaded', 'saai_blocks_init', 10 );
 
-	$iterator = new RecursiveIteratorIterator( $directory_iterator );
-
-	foreach ( $iterator as $file_info ) {
-		if ( $file_info->getExtension() === 'php' ) {
-			require_once $file_info->getRealPath();
-		}
-	}
-} catch ( Exception $e ) {
-	// Handle error silently in production or use WordPress admin notice.
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		wp_die( 'File load error in plugin: ' . esc_html( $e->getMessage() ) );
-	}
-}
-
-	add_action( 'plugins_loaded', 'saai_blocks_init', 10 );
-
-	/**
-	 * Initialize the plugin.
-	 *
-	 * Loads the text domain and initializes the main plugin class.
-	 */
+/**
+ * Initialize the plugin.
+ *
+ * Loads the text domain and initializes the main plugin class.
+ */
 function saai_blocks_init() {
 	load_plugin_textdomain( 'saai-blocks', false, plugin_basename( __DIR__ ) . '/i18n' );
 	SAAI_Blocks::instance();
