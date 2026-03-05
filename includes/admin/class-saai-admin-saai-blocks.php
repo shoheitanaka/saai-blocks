@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Admin Plugin Class
  */
-class SAAI_Admin_Plugin_Name {
+class SAAI_Admin_SAAI_Blocks {
 
 	/**
 	 * Constructor.
@@ -29,14 +29,14 @@ class SAAI_Admin_Plugin_Name {
 	/**
 	 * Instance of this class.
 	 *
-	 * @var SAAI_Admin_Plugin_Name
+	 * @var SAAI_Admin_SAAI_Blocks
 	 */
 	private static $instance;
 
 	/**
 	 * Get the instance of this class.
 	 *
-	 * @return SAAI_Admin_Plugin_Name
+	 * @return SAAI_Admin_SAAI_Blocks
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) ) {
