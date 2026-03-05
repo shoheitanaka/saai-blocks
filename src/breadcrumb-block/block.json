@@ -4,7 +4,7 @@
 	"name": "saai-blocks/breadcrumb-block",
 	"version": "0.1.0",
 	"title": "Breadcrumb Block Pro",
-	"category": "widgets",
+	"category": "saai-blocks",
 	"icon": "admin-site",
 	"description": "Display breadcrumb navigation with customizable separators, colors, and SEO-friendly structured data.",
 	"example": {

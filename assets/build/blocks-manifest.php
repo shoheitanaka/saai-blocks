@@ -7,7 +7,7 @@ return array(
 		'name' => 'saai-blocks/breadcrumb-block',
 		'version' => '0.1.0',
 		'title' => 'Breadcrumb Block Pro',
-		'category' => 'widgets',
+		'category' => 'saai-blocks',
 		'icon' => 'admin-site',
 		'description' => 'Display breadcrumb navigation with customizable separators, colors, and SEO-friendly structured data.',
 		'example' => array(
@@ -68,7 +68,7 @@ return array(
 		'name' => 'saai-blocks/hover-image-switcher',
 		'version' => '0.1.0',
 		'title' => 'Image Gallery Swiper',
-		'category' => 'media',
+		'category' => 'saai-blocks',
 		'icon' => 'format-gallery',
 		'description' => 'Display a swipeable image gallery with multiple images.',
 		'example' => array(

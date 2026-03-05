@@ -42,6 +42,7 @@ class SAAI_Blocks {
 	 */
 	private function init() {
 		add_action( 'init', array( $this, 'register_blocks' ) );
+		add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 2 );
 	}
 
 	/**
@@ -58,6 +59,26 @@ class SAAI_Blocks {
 			);
 			new SAAI_Admin_Page( $admin_menu );
 		}
+	}
+
+	/**
+	 * Registers the SAAI Blocks category.
+	 *
+	 * @param array  $categories Existing block categories.
+	 * @param object $_post      Current post object (unused).
+	 * @return array Modified block categories.
+	 */
+	public function register_block_category( $categories, $_post ) {
+		return array_merge(
+			array(
+				array(
+					'slug'  => 'saai-blocks',
+					'title' => __( 'SAAI Blocks', 'saai-blocks' ),
+					'icon'  => null,
+				),
+			),
+			$categories
+		);
 	}
 
 	/**
