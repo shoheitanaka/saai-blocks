@@ -145,6 +145,14 @@ if ( ! class_exists( 'SAAI\Admin\SAAI_Admin_Page' ) ) :
 				filemtime( SAAI_BLOCKS_PATH . 'assets/build/saai/admin/overview.css' )
 			);
 
+			wp_localize_script(
+				$this->menu_slug,
+				'saaiBlocksData',
+				array(
+					'wooPartnerLogoUrl' => SAAI_BLOCKS_URL . 'assets/images/woo_partner_logo.png',
+				)
+			);
+
 			wp_enqueue_script( $this->menu_slug );
 			wp_enqueue_style( $this->menu_slug );
 		}

@@ -35,7 +35,13 @@
             }
             .saai-admin__content {
                 padding: 30px;
+                text-align: center;
                 min-height: calc(100vh - 92px);
+                .saai-woo-partner-logo {
+                    display: block;
+                    margin: 30px auto 0;
+                    max-width: 200px;
+                }
             }
         }
     }
