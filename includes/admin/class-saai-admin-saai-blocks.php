@@ -104,15 +104,6 @@ class SAAI_Admin_SAAI_Blocks {
 			);
 
 		// Enqueue overview CSS for shared admin layout styles.
-		wp_enqueue_style(
-			$this->sub_menu_slug,
-			SAAI_BLOCKS_URL . 'assets/build/saai/admin/overview.css',
-			array(),
-			file_exists( SAAI_BLOCKS_PATH . '/assets/build/saai/admin/overview.css' )
-				? filemtime( SAAI_BLOCKS_PATH . '/assets/build/saai/admin/overview.css' )
-				: '1.0.0'
-		);
-
 		wp_enqueue_script(
 			$this->sub_menu_slug,
 			SAAI_BLOCKS_URL . 'assets/build/saai/admin/blocks-settings.js',

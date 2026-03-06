@@ -10,7 +10,7 @@ const SaaiOverviewPage = () => {
                     <h1>{ __( 'SAAI Overview', 'saai-blocks' ) }</h1>
                 </div>
             </div>
-            <div className="saai-admin__content">
+            <div className="saai-admin-overview__content">
                 <p>{ __( 'This plugin is developed by Shinobiashi INC., a Woo Agency.', 'saai-blocks' ) }</p>
                 { window.saaiBlocksData?.wooPartnerLogoUrl && (
                     <a
