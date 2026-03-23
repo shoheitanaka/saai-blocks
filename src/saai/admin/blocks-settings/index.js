@@ -32,6 +32,11 @@ const BLOCKS_CONFIG = [
 		title: __( 'Image Text Hover Block', 'saai-blocks' ),
 		description: __( 'Interactive image block with text overlay on hover.', 'saai-blocks' ),
 	},
+	{
+		name: 'model-3d-viewer',
+		title: __( '3D Model Viewer Block', 'saai-blocks' ),
+		description: __( 'Display interactive 3D models using Google\'s model-viewer. Supports GLB and USDZ files with camera controls, auto-rotate, and AR.', 'saai-blocks' ),
+	},
 ];
 
 const DEFAULT_ENABLED = Object.fromEntries(

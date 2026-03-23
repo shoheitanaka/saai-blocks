@@ -1,0 +1,19 @@
+.wp-block-saai-blocks-model-3d-viewer {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	border-radius: 8px;
+
+	model-viewer {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+
+	.saai-3d-model-viewer__container {
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		border-radius: 8px;
+	}
+}

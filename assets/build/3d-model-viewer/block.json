@@ -1,0 +1,70 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "saai-blocks/3d-model-viewer",
+  "version": "1.0.0",
+  "title": "3D Model Viewer Block",
+  "category": "saai-blocks",
+  "icon": "format-image",
+  "description": "Display interactive 3D models using Google's model-viewer. Upload GLB and USDZ files with camera controls, auto-rotate, and AR support.",
+  "example": {
+    "attributes": {
+      "glbUrl": "",
+      "usdzUrl": "",
+      "viewerHeight": "400px",
+      "backgroundColor": "#ffffff",
+      "autoRotate": true
+    }
+  },
+  "attributes": {
+    "glbUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "glbId": {
+      "type": "number",
+      "default": 0
+    },
+    "glbFilename": {
+      "type": "string",
+      "default": ""
+    },
+    "usdzUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "usdzId": {
+      "type": "number",
+      "default": 0
+    },
+    "usdzFilename": {
+      "type": "string",
+      "default": ""
+    },
+    "viewerHeight": {
+      "type": "string",
+      "default": "400px"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "autoRotate": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "textdomain": "saai-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

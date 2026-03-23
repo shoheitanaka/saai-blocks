@@ -6,7 +6,9 @@
       "Bash(/Users/shoheitanaka/Dev/saai-blocks/i18n/saai-blocks-ja.po:*)",
       "Bash(msgfmt /Users/shoheitanaka/Dev/saai-blocks/i18n/saai-blocks-ja.po -o /Users/shoheitanaka/Dev/saai-blocks/i18n/saai-blocks-ja.mo)",
       "Bash(/Users/shoheitanaka/Dev/saai-blocks/i18n/saai-blocks-ja-saai-blocks-settings.json:*)",
-      "Bash(md5)"
+      "Bash(md5)",
+      "Bash(wp-env run cli wp eval \":*)",
+      "Bash(wp-env run:*)"
     ]
   }
 }

@@ -1,6 +1,76 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
+	'3d-model-viewer' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'saai-blocks/3d-model-viewer',
+		'version' => '1.0.0',
+		'title' => '3D Model Viewer Block',
+		'category' => 'saai-blocks',
+		'icon' => 'format-image',
+		'description' => 'Display interactive 3D models using Google\'s model-viewer. Upload GLB and USDZ files with camera controls, auto-rotate, and AR support.',
+		'example' => array(
+			'attributes' => array(
+				'glbUrl' => '',
+				'usdzUrl' => '',
+				'viewerHeight' => '400px',
+				'backgroundColor' => '#ffffff',
+				'autoRotate' => true
+			)
+		),
+		'attributes' => array(
+			'glbUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'glbId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'glbFilename' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'usdzUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'usdzId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'usdzFilename' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'viewerHeight' => array(
+				'type' => 'string',
+				'default' => '400px'
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => '#ffffff'
+			),
+			'autoRotate' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'align' => array(
+				'wide',
+				'full'
+			)
+		),
+		'textdomain' => 'saai-blocks',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
+	),
 	'breadcrumb-block' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
@@ -197,6 +267,76 @@ return array(
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
+		'viewScript' => 'file:./view.js'
+	),
+	'model-3d-viewer' => array(
+		'$schema' => 'https://schemas.wp.org/trunk/block.json',
+		'apiVersion' => 3,
+		'name' => 'saai-blocks/model-3d-viewer',
+		'version' => '1.0.0',
+		'title' => '3D Model Viewer Block',
+		'category' => 'saai-blocks',
+		'icon' => 'format-image',
+		'description' => 'Display interactive 3D models using Google\'s model-viewer. Upload GLB and USDZ files with camera controls, auto-rotate, and AR support.',
+		'example' => array(
+			'attributes' => array(
+				'glbUrl' => '',
+				'usdzUrl' => '',
+				'viewerHeight' => '400px',
+				'backgroundColor' => '#ffffff',
+				'autoRotate' => true
+			)
+		),
+		'attributes' => array(
+			'glbUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'glbId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'glbFilename' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'usdzUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'usdzId' => array(
+				'type' => 'number',
+				'default' => 0
+			),
+			'usdzFilename' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'viewerHeight' => array(
+				'type' => 'string',
+				'default' => '400px'
+			),
+			'backgroundColor' => array(
+				'type' => 'string',
+				'default' => '#ffffff'
+			),
+			'autoRotate' => array(
+				'type' => 'boolean',
+				'default' => true
+			)
+		),
+		'supports' => array(
+			'html' => false,
+			'align' => array(
+				'wide',
+				'full'
+			)
+		),
+		'textdomain' => 'saai-blocks',
+		'editorScript' => 'file:./index.js',
+		'editorStyle' => 'file:./index.css',
+		'style' => 'file:./style-index.css',
+		'render' => 'file:./render.php',
 		'viewScript' => 'file:./view.js'
 	),
 	'responsive-device-image' => array(
