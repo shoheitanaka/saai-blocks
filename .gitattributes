@@ -16,3 +16,4 @@ LICENSE export-ignore
 src/* export-ignore
 assets/*.js.map export-ignore
 assets/*.css.map export-ignore
+.claude export-ignore
