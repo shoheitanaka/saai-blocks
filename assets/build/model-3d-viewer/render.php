@@ -31,23 +31,21 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
-$model_attrs  = ' src="' . $glb_url . '"';
-$model_attrs .= ' camera-controls';
-
-if ( ! empty( $usdz_url ) ) {
-	$model_attrs .= ' ios-src="' . $usdz_url . '"';
-}
-
-if ( $auto_rotate ) {
-	$model_attrs .= ' auto-rotate';
-}
-
-$model_attrs .= ' ar';
-$model_attrs .= ' ar-modes="webxr scene-viewer quick-look"';
-$model_attrs .= ' style="width:100%;height:100%;background-color:' . $background_color . ';"';
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_block_wrapper_attributes() is safe. ?>>
 	<div class="saai-3d-model-viewer__container" style="height:<?php echo esc_attr( $viewer_height ); ?>;">
-		<model-viewer<?php echo $model_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- all values are escaped above. ?>></model-viewer>
+		<model-viewer
+			src="<?php echo esc_url( $glb_url ); ?>"
+			<?php if ( ! empty( $usdz_url ) ) : ?>
+			ios-src="<?php echo esc_url( $usdz_url ); ?>"
+			<?php endif; ?>
+			style="width:100%;height:100%;background-color:<?php echo esc_attr( $background_color ); ?>;"
+			camera-controls
+			<?php if ( $auto_rotate ) : ?>
+			auto-rotate
+			<?php endif; ?>
+			ar
+			ar-modes="webxr scene-viewer quick-look"
+		></model-viewer>
 	</div>
 </div>

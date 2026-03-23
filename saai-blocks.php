@@ -10,7 +10,7 @@
  * Text Domain: saai-blocks
  * Domain Path: /i18n
  * Requires at least: 6.8
- * Tested up to: 6.9.1
+ * Tested up to: 6.9.4
  * Requires PHP: 8.2
  *
  * @package SAAI_Blocks
