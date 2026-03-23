@@ -40,3 +40,7 @@ Thumbs.db
 
 # Logs
 logs/
+
+# Ignore files with secrets
+.claude
+.npmrc

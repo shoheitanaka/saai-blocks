@@ -45,9 +45,6 @@ class SAAI_Blocks {
 		add_action( 'init', array( $this, 'register_settings' ) );
 		add_action( 'init', array( $this, 'register_blocks' ) );
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 2 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_model_viewer_scripts' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_model_viewer_editor_scripts' ) );
-		add_filter( 'script_loader_tag', array( $this, 'add_module_type_to_model_viewer' ), 10, 2 );
 		add_filter( 'upload_mimes', array( $this, 'allow_3d_model_mime_types' ) );
 		add_filter( 'wp_check_filetype_and_ext', array( $this, 'check_3d_model_filetype' ), 10, 4 );
 	}
@@ -177,73 +174,8 @@ class SAAI_Blocks {
 	}
 
 	// =========================================================================
-	// 3D Model Viewer Block — Script & MIME type helpers
+	// 3D Model Viewer Block — MIME type helpers
 	// =========================================================================
-
-	/**
-	 * Enqueue the model-viewer CDN script on the frontend (only when block is used).
-	 */
-	public function enqueue_model_viewer_scripts() {
-		$enabled = $this->get_enabled_blocks();
-		if ( empty( $enabled['model-3d-viewer'] ) ) {
-			return;
-		}
-
-		if ( ! has_block( 'saai-blocks/model-3d-viewer' ) ) {
-			return;
-		}
-
-		wp_enqueue_script(
-			'saai-model-viewer',
-			'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js',
-			array(),
-			'3.5.0',
-			array(
-				'strategy'  => 'defer',
-				'in_footer' => true,
-			)
-		);
-	}
-
-	/**
-	 * Enqueue the model-viewer CDN script in the block editor.
-	 */
-	public function enqueue_model_viewer_editor_scripts() {
-		$enabled = $this->get_enabled_blocks();
-		if ( empty( $enabled['model-3d-viewer'] ) ) {
-			return;
-		}
-
-		wp_enqueue_script(
-			'saai-model-viewer-editor',
-			'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js',
-			array(),
-			'3.5.0',
-			array(
-				'strategy'  => 'defer',
-				'in_footer' => true,
-			)
-		);
-	}
-
-	/**
-	 * Add type="module" attribute to the model-viewer CDN script tags.
-	 * model-viewer is an ES module and requires this attribute to load correctly.
-	 *
-	 * @param string $tag    The script HTML tag.
-	 * @param string $handle The script handle.
-	 * @return string Modified script tag.
-	 */
-	public function add_module_type_to_model_viewer( $tag, $handle ) {
-		if ( ! in_array( $handle, array( 'saai-model-viewer', 'saai-model-viewer-editor' ), true ) ) {
-			return $tag;
-		}
-		return str_replace(
-			' src=',
-			' type="module" integrity="sha384-Ftcjj/GNLxPvzNDftO/oryXB9aGxsGZY9JGqsXG0uUKgQDl9RfDgsx9NJ/4IVNPe" crossorigin="anonymous" src=',
-			$tag
-		);
-	}
 
 	/**
 	 * Allow GLB and USDZ file uploads via the media library.
