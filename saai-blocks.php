@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: SAAI Blocks
- * Plugin URI: https://shinobiashi.ai/
+ * Plugin URI: https://wordpress.org/plugins/saai-blocks/
  * Description: Shinobiashi AI Blocks for WordPress.
  * Version: 1.0.0
  * Author: Shohei Tanaka
