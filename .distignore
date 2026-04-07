@@ -42,6 +42,6 @@ Thumbs.db
 logs/
 
 # Ignore files with secrets
-.claude
+.claude/
 .npmrc
 .distignore
