@@ -1,4 +1,3 @@
-
 /**
  * Retrieves the translation of text.
  *
@@ -12,13 +11,17 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, InspectorControls, PanelColorSettings } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	InspectorControls,
+	PanelColorSettings,
+} from '@wordpress/block-editor';
 
-import { 
-	PanelBody, 
-	SelectControl, 
+import {
+	PanelBody,
+	SelectControl,
 	ToggleControl,
-	TextControl
+	TextControl,
 } from '@wordpress/components';
 
 /**
@@ -39,14 +42,8 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const {
-		separator,
-		showHome,
-		showCurrent,
-		homeText,
-		textColor,
-		linkColor,
-	} = attributes;
+	const { separator, showHome, showCurrent, homeText, textColor, linkColor } =
+		attributes;
 
 	const blockProps = useBlockProps( {
 		style: {
@@ -57,7 +54,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	// Sample breadcrumb trail for preview
 	const sampleTrail = [];
-	
+
 	if ( showHome ) {
 		sampleTrail.push( {
 			title: homeText,
@@ -92,31 +89,57 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Separator', 'saai-blocks' ) }
 						value={ separator }
 						options={ [
-							{ label: __( 'Slash (/)', 'saai-blocks' ), value: '/' },
-							{ label: __( 'Angle Bracket (>)', 'saai-blocks' ), value: '>' },
-							{ label: __( 'Dot (•)', 'saai-blocks' ), value: '•' },
-							{ label: __( 'Arrow (→)', 'saai-blocks' ), value: '→' },
-							{ label: __( 'Double Angle (»)', 'saai-blocks' ), value: '»' },
-							{ label: __( 'Pipe (|)', 'saai-blocks' ), value: '|' },
+							{
+								label: __( 'Slash (/)', 'saai-blocks' ),
+								value: '/',
+							},
+							{
+								label: __( 'Angle Bracket (>)', 'saai-blocks' ),
+								value: '>',
+							},
+							{
+								label: __( 'Dot (•)', 'saai-blocks' ),
+								value: '•',
+							},
+							{
+								label: __( 'Arrow (→)', 'saai-blocks' ),
+								value: '→',
+							},
+							{
+								label: __( 'Double Angle (»)', 'saai-blocks' ),
+								value: '»',
+							},
+							{
+								label: __( 'Pipe (|)', 'saai-blocks' ),
+								value: '|',
+							},
 						] }
-						onChange={ ( value ) => setAttributes( { separator: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { separator: value } )
+						}
 					/>
 					<ToggleControl
 						label={ __( 'Show Home Link', 'saai-blocks' ) }
 						checked={ showHome }
-						onChange={ ( value ) => setAttributes( { showHome: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { showHome: value } )
+						}
 					/>
 					{ showHome && (
 						<TextControl
 							label={ __( 'Home Text', 'saai-blocks' ) }
 							value={ homeText }
-							onChange={ ( value ) => setAttributes( { homeText: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { homeText: value } )
+							}
 						/>
 					) }
 					<ToggleControl
 						label={ __( 'Show Current Page', 'saai-blocks' ) }
 						checked={ showCurrent }
-						onChange={ ( value ) => setAttributes( { showCurrent: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { showCurrent: value } )
+						}
 					/>
 				</PanelBody>
 				<PanelColorSettings
@@ -124,34 +147,47 @@ export default function Edit( { attributes, setAttributes } ) {
 					colorSettings={ [
 						{
 							value: textColor,
-							onChange: ( value ) => setAttributes( { textColor: value } ),
+							onChange: ( value ) =>
+								setAttributes( { textColor: value } ),
 							label: __( 'Text Color', 'saai-blocks' ),
 						},
 						{
 							value: linkColor,
-							onChange: ( value ) => setAttributes( { linkColor: value } ),
+							onChange: ( value ) =>
+								setAttributes( { linkColor: value } ),
 							label: __( 'Link Color', 'saai-blocks' ),
 						},
 					] }
 				/>
 			</InspectorControls>
-			<nav { ...blockProps } aria-label={ __( 'Breadcrumb', 'saai-blocks' ) }>
+			<nav
+				{ ...blockProps }
+				aria-label={ __( 'Breadcrumb', 'saai-blocks' ) }
+			>
 				<ol className="saai-breadcrumb-list">
 					{ sampleTrail.map( ( item, index ) => (
 						<li key={ index } className="saai-breadcrumb-item">
 							{ item.url ? (
 								<>
-									<a href={ item.url } className="saai-breadcrumb-link">
+									<a
+										href={ item.url }
+										className="saai-breadcrumb-link"
+									>
 										{ item.title }
 									</a>
 									{ index < sampleTrail.length - 1 && (
-										<span className="saai-breadcrumb-separator" aria-hidden="true">
+										<span
+											className="saai-breadcrumb-separator"
+											aria-hidden="true"
+										>
 											{ separatorMap[ separator ] }
 										</span>
 									) }
 								</>
 							) : (
-								<span className="saai-breadcrumb-current">{ item.title }</span>
+								<span className="saai-breadcrumb-current">
+									{ item.title }
+								</span>
 							) }
 						</li>
 					) ) }

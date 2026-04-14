@@ -1,4 +1,3 @@
-
 /**
  * Retrieves the translation of text.
  *
@@ -12,9 +11,12 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import {
+	useBlockProps,
+	MediaUpload,
+	MediaUploadCheck,
+} from '@wordpress/block-editor';
 import { Button, TextControl, Placeholder } from '@wordpress/components';
-import { useState } from '@wordpress/element';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -94,16 +96,34 @@ export default function Edit( { attributes, setAttributes } ) {
 		} );
 	};
 
-	const ImageUploadArea = ( { label, imageUrl, imageId, onSelect, onRemove, altText, onAltChange, isRequired, fallbackUrl } ) => {
+	const ImageUploadArea = ( {
+		label,
+		imageUrl,
+		imageId,
+		onSelect,
+		onRemove,
+		altText,
+		onAltChange,
+		isRequired,
+		fallbackUrl,
+	} ) => {
 		const displayUrl = imageUrl || fallbackUrl;
-		const isFallback = !imageUrl && fallbackUrl;
+		const isFallback = ! imageUrl && fallbackUrl;
 
 		return (
 			<div className="responsive-device-image-upload-area">
 				<div className="upload-label">
 					{ label }
-					{ isRequired && <span className="required-badge">{ __( 'Required', 'saai-blocks' ) }</span> }
-					{ ! isRequired && <span className="optional-badge">{ __( 'Optional', 'saai-blocks' ) }</span> }
+					{ isRequired && (
+						<span className="required-badge">
+							{ __( 'Required', 'saai-blocks' ) }
+						</span>
+					) }
+					{ ! isRequired && (
+						<span className="optional-badge">
+							{ __( 'Optional', 'saai-blocks' ) }
+						</span>
+					) }
 				</div>
 				<MediaUploadCheck>
 					<MediaUpload
@@ -113,20 +133,50 @@ export default function Edit( { attributes, setAttributes } ) {
 						render={ ( { open } ) => (
 							<div className="image-container">
 								{ displayUrl ? (
-									<div className={ `image-preview ${ isFallback ? 'fallback' : '' }` }>
-										<img src={ displayUrl } alt={ altText } />
+									<div
+										className={ `image-preview ${
+											isFallback ? 'fallback' : ''
+										}` }
+									>
+										<img
+											src={ displayUrl }
+											alt={ altText }
+										/>
 										{ isFallback && (
 											<div className="fallback-overlay">
-												<span>{ __( 'Using PC image', 'saai-blocks' ) }</span>
+												<span>
+													{ __(
+														'Using PC image',
+														'saai-blocks'
+													) }
+												</span>
 											</div>
 										) }
 										<div className="image-actions">
-											<Button onClick={ open } variant="secondary">
-												{ imageUrl ? __( 'Change Image', 'saai-blocks' ) : __( 'Select Image', 'saai-blocks' ) }
+											<Button
+												onClick={ open }
+												variant="secondary"
+											>
+												{ imageUrl
+													? __(
+															'Change Image',
+															'saai-blocks'
+													  )
+													: __(
+															'Select Image',
+															'saai-blocks'
+													  ) }
 											</Button>
 											{ imageUrl && (
-												<Button onClick={ onRemove } variant="secondary" isDestructive>
-													{ __( 'Remove Image', 'saai-blocks' ) }
+												<Button
+													onClick={ onRemove }
+													variant="secondary"
+													isDestructive
+												>
+													{ __(
+														'Remove Image',
+														'saai-blocks'
+													) }
 												</Button>
 											) }
 										</div>
@@ -134,11 +184,30 @@ export default function Edit( { attributes, setAttributes } ) {
 								) : (
 									<Placeholder
 										icon="format-image"
-										label={ __( 'Select an image', 'saai-blocks' ) }
-										instructions={ isRequired ? __( 'This image is required', 'saai-blocks' ) : __( 'If not selected, the PC image will be used', 'saai-blocks' ) }
+										label={ __(
+											'Select an image',
+											'saai-blocks'
+										) }
+										instructions={
+											isRequired
+												? __(
+														'This image is required',
+														'saai-blocks'
+												  )
+												: __(
+														'If not selected, the PC image will be used',
+														'saai-blocks'
+												  )
+										}
 									>
-										<Button onClick={ open } variant="primary">
-											{ __( 'Select Image', 'saai-blocks' ) }
+										<Button
+											onClick={ open }
+											variant="primary"
+										>
+											{ __(
+												'Select Image',
+												'saai-blocks'
+											) }
 										</Button>
 									</Placeholder>
 								) }
@@ -151,7 +220,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						label={ __( 'Alt Text', 'saai-blocks' ) }
 						value={ altText }
 						onChange={ onAltChange }
-						placeholder={ __( 'Enter a description for the image', 'saai-blocks' ) }
+						placeholder={ __(
+							'Enter a description for the image',
+							'saai-blocks'
+						) }
 					/>
 				) }
 			</div>
@@ -168,7 +240,9 @@ export default function Edit( { attributes, setAttributes } ) {
 					onSelect={ onSelectPcImage }
 					onRemove={ removePcImage }
 					altText={ pcImageAlt }
-					onAltChange={ ( value ) => setAttributes( { pcImageAlt: value } ) }
+					onAltChange={ ( value ) =>
+						setAttributes( { pcImageAlt: value } )
+					}
 					isRequired={ true }
 				/>
 
@@ -179,7 +253,9 @@ export default function Edit( { attributes, setAttributes } ) {
 					onSelect={ onSelectTabletImage }
 					onRemove={ removeTabletImage }
 					altText={ tabletImageAlt }
-					onAltChange={ ( value ) => setAttributes( { tabletImageAlt: value } ) }
+					onAltChange={ ( value ) =>
+						setAttributes( { tabletImageAlt: value } )
+					}
 					isRequired={ false }
 					fallbackUrl={ pcImageUrl }
 				/>
@@ -191,7 +267,9 @@ export default function Edit( { attributes, setAttributes } ) {
 					onSelect={ onSelectSmartphoneImage }
 					onRemove={ removeSmartphoneImage }
 					altText={ smartphoneImageAlt }
-					onAltChange={ ( value ) => setAttributes( { smartphoneImageAlt: value } ) }
+					onAltChange={ ( value ) =>
+						setAttributes( { smartphoneImageAlt: value } )
+					}
 					isRequired={ false }
 					fallbackUrl={ pcImageUrl }
 				/>

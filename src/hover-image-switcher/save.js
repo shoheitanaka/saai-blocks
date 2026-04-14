@@ -1,4 +1,3 @@
-
 /**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
@@ -34,25 +33,34 @@ export default function save( { attributes } ) {
 	}
 
 	const blockProps = useBlockProps.save( {
-		className: `image-gallery-swiper ${arrowsOutside ? 'arrows-outside' : ''} ${dotsOutside ? 'dots-outside' : ''} ${indicatorStyle === 'bars' ? 'indicator-bars' : 'indicator-dots'}`,
+		className: `image-gallery-swiper ${
+			arrowsOutside ? 'arrows-outside' : ''
+		} ${ dotsOutside ? 'dots-outside' : '' } ${
+			indicatorStyle === 'bars' ? 'indicator-bars' : 'indicator-dots'
+		}`,
 		style: {
-			'--gallery-width': `${width}px`,
-			'--gallery-height': `${height}px`,
-			'--arrow-vertical-position': `${arrowVerticalPosition}%`,
-			'--arrow-horizontal-position': `${arrowHorizontalPosition}px`,
+			'--gallery-width': `${ width }px`,
+			'--gallery-height': `${ height }px`,
+			'--arrow-vertical-position': `${ arrowVerticalPosition }%`,
+			'--arrow-horizontal-position': `${ arrowHorizontalPosition }px`,
 		},
 	} );
 
 	return (
 		<div { ...blockProps }>
-			<div className="image-gallery-swiper__container" data-current-index="0">
+			<div
+				className="image-gallery-swiper__container"
+				data-current-index="0"
+			>
 				<div className="image-gallery-swiper__images">
 					{ images.map( ( image, index ) => (
 						<img
 							key={ image.id }
 							src={ image.url }
 							alt={ image.alt }
-							className={ `image-gallery-swiper__image ${ index === 0 ? 'is-active' : '' }` }
+							className={ `image-gallery-swiper__image ${
+								index === 0 ? 'is-active' : ''
+							}` }
 							data-index={ index }
 						/>
 					) ) }
@@ -80,7 +88,9 @@ export default function save( { attributes } ) {
 								<button
 									key={ image.id }
 									type="button"
-									className={ `image-gallery-swiper__dot ${ index === 0 ? 'is-active' : '' }` }
+									className={ `image-gallery-swiper__dot ${
+										index === 0 ? 'is-active' : ''
+									}` }
 									data-index={ index }
 									aria-label={ `Go to image ${ index + 1 }` }
 								/>

@@ -1,56 +1,56 @@
 name: Release
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+    push:
+        tags:
+            - 'v*.*.*'
 
 jobs:
-  release:
-    name: Build & Release
-    runs-on: ubuntu-latest
+    release:
+        name: Build & Release
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22.x'
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22.x'
 
-      - name: Install dependencies & build
-        run: |
-          npm install
-          npm run build
+            - name: Install dependencies & build
+              run: |
+                  npm install
+                  npm run build
 
-      - name: Get version from tag
-        id: version
-        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+            - name: Get version from tag
+              id: version
+              run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
 
-      - name: Create plugin zip
-        run: |
-          PLUGIN_SLUG="saai-blocks"
-          VERSION="${{ steps.version.outputs.VERSION }}"
-          DEST="${PLUGIN_SLUG}-${VERSION}"
+            - name: Create plugin zip
+              run: |
+                  PLUGIN_SLUG="saai-blocks"
+                  VERSION="${{ steps.version.outputs.VERSION }}"
+                  DEST="${PLUGIN_SLUG}-${VERSION}"
 
-          # Copy the necessary files to the staging directory.
-          mkdir -p "/tmp/${DEST}/${PLUGIN_SLUG}"
-          rsync -a \
-            --exclude-from='.distignore' \
-            . "/tmp/${DEST}/${PLUGIN_SLUG}/"
+                  # Copy the necessary files to the staging directory.
+                  mkdir -p "/tmp/${DEST}/${PLUGIN_SLUG}"
+                  rsync -a \
+                    --exclude-from='.distignore' \
+                    . "/tmp/${DEST}/${PLUGIN_SLUG}/"
 
-          # Create zip
-          cd "/tmp/${DEST}"
-          zip -r "${PLUGIN_SLUG}-${VERSION}.zip" "${PLUGIN_SLUG}/"
+                  # Create zip
+                  cd "/tmp/${DEST}"
+                  zip -r "${PLUGIN_SLUG}-${VERSION}.zip" "${PLUGIN_SLUG}/"
 
-          # Move to workspace
-          mv "${PLUGIN_SLUG}-${VERSION}.zip" "$GITHUB_WORKSPACE/"
+                  # Move to workspace
+                  mv "${PLUGIN_SLUG}-${VERSION}.zip" "$GITHUB_WORKSPACE/"
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          name: ${{ github.ref_name }}
-          tag_name: ${{ github.ref_name }}
-          generate_release_notes: true
-          files: saai-blocks-${{ steps.version.outputs.VERSION }}.zip
+            - name: Create GitHub Release
+              uses: softprops/action-gh-release@v2
+              with:
+                  name: ${{ github.ref_name }}
+                  tag_name: ${{ github.ref_name }}
+                  generate_release_notes: true
+                  files: saai-blocks-${{ steps.version.outputs.VERSION }}.zip

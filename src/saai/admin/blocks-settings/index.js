@@ -15,27 +15,42 @@ const BLOCKS_CONFIG = [
 	{
 		name: 'breadcrumb-block',
 		title: __( 'Breadcrumb Block', 'saai-blocks' ),
-		description: __( 'Display breadcrumb navigation with customizable separators, colors, and SEO-friendly structured data.', 'saai-blocks' ),
+		description: __(
+			'Display breadcrumb navigation with customizable separators, colors, and SEO-friendly structured data.',
+			'saai-blocks'
+		),
 	},
 	{
 		name: 'hover-image-switcher',
 		title: __( 'Image Gallery Swiper', 'saai-blocks' ),
-		description: __( 'Display multiple images in a swipeable gallery.', 'saai-blocks' ),
+		description: __(
+			'Display multiple images in a swipeable gallery.',
+			'saai-blocks'
+		),
 	},
 	{
 		name: 'responsive-device-image',
 		title: __( 'Responsive Device Image Block', 'saai-blocks' ),
-		description: __( 'Display different images for PC, tablet, and smartphone.', 'saai-blocks' ),
+		description: __(
+			'Display different images for PC, tablet, and smartphone.',
+			'saai-blocks'
+		),
 	},
 	{
 		name: 'image-text-hover',
 		title: __( 'Image Text Hover Block', 'saai-blocks' ),
-		description: __( 'Interactive image block with text overlay on hover.', 'saai-blocks' ),
+		description: __(
+			'Interactive image block with text overlay on hover.',
+			'saai-blocks'
+		),
 	},
 	{
 		name: 'model-3d-viewer',
 		title: __( '3D Model Viewer Block', 'saai-blocks' ),
-		description: __( 'Display interactive 3D models using Google\'s model-viewer. Supports GLB and USDZ files with camera controls, auto-rotate, and AR.', 'saai-blocks' ),
+		description: __(
+			"Display interactive 3D models using Google's model-viewer. Supports GLB and USDZ files with camera controls, auto-rotate, and AR.",
+			'saai-blocks'
+		),
 	},
 ];
 
@@ -70,7 +85,10 @@ const BlocksSettingsPage = () => {
 			.then( () => {
 				setNotice( {
 					status: 'success',
-					message: __( 'Settings saved. Please reload the page to apply changes.', 'saai-blocks' ),
+					message: __(
+						'Settings saved. Please reload the page to apply changes.',
+						'saai-blocks'
+					),
 				} );
 			} )
 			.catch( () => {
@@ -117,11 +135,17 @@ const BlocksSettingsPage = () => {
 					</Notice>
 				) }
 				<p className="saai-blocks-settings__description">
-					{ __( 'Select the blocks to use on this site. Disabled blocks will not appear in the editor. If all blocks are disabled, the "SAAI Blocks" category will also be hidden.', 'saai-blocks' ) }
+					{ __(
+						'Select the blocks to use on this site. Disabled blocks will not appear in the editor. If all blocks are disabled, the "SAAI Blocks" category will also be hidden.',
+						'saai-blocks'
+					) }
 				</p>
 				<div className="saai-blocks-settings__list">
 					{ BLOCKS_CONFIG.map( ( block ) => (
-						<Card key={ block.name } className="saai-blocks-settings__card">
+						<Card
+							key={ block.name }
+							className="saai-blocks-settings__card"
+						>
 							<CardBody>
 								<div className="saai-blocks-settings__block-row">
 									<div className="saai-blocks-settings__block-info">
@@ -132,13 +156,17 @@ const BlocksSettingsPage = () => {
 										label={
 											enabled[ block.name ]
 												? __( 'Enabled', 'saai-blocks' )
-												: __( 'Disabled', 'saai-blocks' )
+												: __(
+														'Disabled',
+														'saai-blocks'
+												  )
 										}
 										checked={ !! enabled[ block.name ] }
 										onChange={ () =>
 											setEnabled( ( prev ) => ( {
 												...prev,
-												[ block.name ]: ! prev[ block.name ],
+												[ block.name ]:
+													! prev[ block.name ],
 											} ) )
 										}
 									/>

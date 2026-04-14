@@ -56,9 +56,12 @@ class SAAI_Blocks {
 	 */
 	public function __construct() {
 		if ( is_admin() ) {
+			// Pass raw strings here; SAAI_Admin_Page applies __() in its
+			// register_saai_admin_overview_page() callback (admin_menu hook,
+			// after init) to avoid the WP 6.7+ "loaded too early" notice.
 			$admin_menu = array(
-				'page_title'  => __( 'SAAI overview', 'saai-blocks' ),
-				'menu_title'  => __( 'SAAI', 'saai-blocks' ),
+				'page_title'  => 'SAAI overview',
+				'menu_title'  => 'SAAI',
 				'plugin_path' => SAAI_BLOCKS_PATH,
 			);
 			new SAAI_Admin_Page( $admin_menu );
@@ -259,18 +262,24 @@ class SAAI_Blocks {
 					if ( $category->parent ) {
 						$cat_ancestors = array_reverse( get_ancestors( $category->term_id, 'category' ) );
 						foreach ( $cat_ancestors as $ancestor_id ) {
-							$ancestor = get_term( $ancestor_id, 'category' );
-							$trail[]  = array(
-								'title' => $ancestor->name,
-								'url'   => get_term_link( $ancestor ),
-							);
+							$ancestor      = get_term( $ancestor_id, 'category' );
+							$ancestor_link = get_term_link( $ancestor );
+							if ( ! is_wp_error( $ancestor_link ) ) {
+								$trail[] = array(
+									'title' => $ancestor->name,
+									'url'   => $ancestor_link,
+								);
+							}
 						}
 					}
 
-					$trail[] = array(
-						'title' => $category->name,
-						'url'   => get_term_link( $category ),
-					);
+					$category_link = get_term_link( $category );
+					if ( ! is_wp_error( $category_link ) ) {
+						$trail[] = array(
+							'title' => $category->name,
+							'url'   => $category_link,
+						);
+					}
 				}
 
 				// Add custom taxonomy terms for custom post types.
@@ -284,17 +293,23 @@ class SAAI_Blocks {
 								if ( $term->parent ) {
 									$term_ancestors = array_reverse( get_ancestors( $term->term_id, $taxonomy->name ) );
 									foreach ( $term_ancestors as $ancestor_id ) {
-										$ancestor = get_term( $ancestor_id, $taxonomy->name );
-										$trail[]  = array(
-											'title' => $ancestor->name,
-											'url'   => get_term_link( $ancestor ),
-										);
+										$ancestor      = get_term( $ancestor_id, $taxonomy->name );
+										$ancestor_link = get_term_link( $ancestor );
+										if ( ! is_wp_error( $ancestor_link ) ) {
+											$trail[] = array(
+												'title' => $ancestor->name,
+												'url'   => $ancestor_link,
+											);
+										}
 									}
 								}
-								$trail[] = array(
-									'title' => $term->name,
-									'url'   => get_term_link( $term ),
-								);
+								$term_link = get_term_link( $term );
+								if ( ! is_wp_error( $term_link ) ) {
+									$trail[] = array(
+										'title' => $term->name,
+										'url'   => $term_link,
+									);
+								}
 								break;
 							}
 						}
@@ -316,11 +331,14 @@ class SAAI_Blocks {
 			if ( $term->parent ) {
 				$ancestors = array_reverse( get_ancestors( $term->term_id, $term->taxonomy ) );
 				foreach ( $ancestors as $ancestor_id ) {
-					$ancestor = get_term( $ancestor_id, $term->taxonomy );
-					$trail[]  = array(
-						'title' => $ancestor->name,
-						'url'   => get_term_link( $ancestor ),
-					);
+					$ancestor      = get_term( $ancestor_id, $term->taxonomy );
+					$ancestor_link = get_term_link( $ancestor );
+					if ( ! is_wp_error( $ancestor_link ) ) {
+						$trail[] = array(
+							'title' => $ancestor->name,
+							'url'   => $ancestor_link,
+						);
+					}
 				}
 			}
 
@@ -389,6 +407,7 @@ class SAAI_Blocks {
 			'itemListElement' => $items,
 		);
 
-		return wp_json_encode( $structured_data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
+		// JSON_HEX_TAG escapes < and > to prevent </script> injection in HTML context.
+		return wp_json_encode( $structured_data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG );
 	}
 }

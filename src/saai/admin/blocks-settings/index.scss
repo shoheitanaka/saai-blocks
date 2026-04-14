@@ -1,17 +1,21 @@
 .saai-admin-page #wpcontent {
 	padding: 0;
+
 	#wpbody {
 		display: inline-block;
 		width: 100%;
 		padding-top: 0;
 		margin-top: 60px;
+
 		#wpbody-content {
 			padding: 0;
 			overflow-x: hidden !important;
 			min-height: calc(100vh - 32px);
+
 			.wrap {
 				padding: 0;
 				margin: 0;
+
 				.saai-admin__header {
 					background: #fff;
 					box-sizing: border-box;
@@ -20,18 +24,22 @@
 					width: calc(100% - 160px);
 					top: 32px;
 					z-index: 1001;
+
 					.saai-admin__header-wrapper {
 						display: flex;
 						align-items: center;
 						min-height: 60px;
+
 						h1 {
 							padding-left: 30px;
 						}
+
 						.notice {
 							display: none;
 						}
 					}
 				}
+
 				.saai-admin__content {
 					padding: 30px;
 					min-height: calc(100vh - 92px);
@@ -42,6 +50,7 @@
 }
 
 .saai-blocks-settings {
+
 	&__loading {
 		display: flex;
 		align-items: center;

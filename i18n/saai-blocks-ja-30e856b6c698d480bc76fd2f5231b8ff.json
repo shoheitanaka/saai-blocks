@@ -1,1 +1,36 @@
-{"translation-revision-date":"2026-03-05 22:11+0900","generator":"WP-CLI\/2.12.0","source":"assets\/build\/image-text-hover\/index.js","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","lang":"ja","plural-forms":"nplurals=1; plural=0;"},"Overlay Settings":["\u30aa\u30fc\u30d0\u30fc\u30ec\u30a4\u8a2d\u5b9a"],"Overlay Color":["\u30aa\u30fc\u30d0\u30fc\u30ec\u30a4\u8272"],"Overlay Opacity":["\u30aa\u30fc\u30d0\u30fc\u30ec\u30a4\u306e\u4e0d\u900f\u660e\u5ea6"],"Add hover text...":["\u30db\u30d0\u30fc\u30c6\u30ad\u30b9\u30c8\u3092\u8ffd\u52a0..."],"Change Image":["\u753b\u50cf\u5909\u66f4"],"Remove Image":["\u753b\u50cf\u3092\u524a\u9664"],"Image Text Hover Block":["\u753b\u50cf\u30c6\u30ad\u30b9\u30c8\u30db\u30d0\u30fc\u30d6\u30ed\u30c3\u30af"],"Upload an image to get started":["\u753b\u50cf\u3092\u8aad\u307f\u8fbc\u3093\u3067\u59cb\u3081\u307e\u3057\u3087\u3046"],"Upload Image":["\u753b\u50cf\u3092\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9"]}}}
+{
+	"translation-revision-date": "2026-03-05 22:11+0900",
+	"generator": "WP-CLI/2.12.0",
+	"source": "assets/build/image-text-hover/index.js",
+	"domain": "messages",
+	"locale_data": {
+		"messages": {
+			"": {
+				"domain": "messages",
+				"lang": "ja",
+				"plural-forms": "nplurals=1; plural=0;"
+			},
+			"Overlay Settings": [
+				"\u30aa\u30fc\u30d0\u30fc\u30ec\u30a4\u8a2d\u5b9a"
+			],
+			"Overlay Color": [ "\u30aa\u30fc\u30d0\u30fc\u30ec\u30a4\u8272" ],
+			"Overlay Opacity": [
+				"\u30aa\u30fc\u30d0\u30fc\u30ec\u30a4\u306e\u4e0d\u900f\u660e\u5ea6"
+			],
+			"Add hover text...": [
+				"\u30db\u30d0\u30fc\u30c6\u30ad\u30b9\u30c8\u3092\u8ffd\u52a0..."
+			],
+			"Change Image": [ "\u753b\u50cf\u5909\u66f4" ],
+			"Remove Image": [ "\u753b\u50cf\u3092\u524a\u9664" ],
+			"Image Text Hover Block": [
+				"\u753b\u50cf\u30c6\u30ad\u30b9\u30c8\u30db\u30d0\u30fc\u30d6\u30ed\u30c3\u30af"
+			],
+			"Upload an image to get started": [
+				"\u753b\u50cf\u3092\u8aad\u307f\u8fbc\u3093\u3067\u59cb\u3081\u307e\u3057\u3087\u3046"
+			],
+			"Upload Image": [
+				"\u753b\u50cf\u3092\u30a2\u30c3\u30d7\u30ed\u30fc\u30c9"
+			]
+		}
+	}
+}

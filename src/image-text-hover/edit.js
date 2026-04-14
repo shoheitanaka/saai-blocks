@@ -11,8 +11,20 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, RichText, MediaUpload, MediaUploadCheck, InspectorControls } from '@wordpress/block-editor';
-import { Button, Placeholder, PanelBody, RangeControl, ColorPicker } from '@wordpress/components';
+import {
+	useBlockProps,
+	RichText,
+	MediaUpload,
+	MediaUploadCheck,
+	InspectorControls,
+} from '@wordpress/block-editor';
+import {
+	Button,
+	Placeholder,
+	PanelBody,
+	RangeControl,
+	ColorPicker,
+} from '@wordpress/components';
 import { useState } from '@wordpress/element';
 
 /**
@@ -32,7 +44,14 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { imageUrl, imageId, imageAlt, hoverText, overlayColor, overlayOpacity } = attributes;
+	const {
+		imageUrl,
+		imageId,
+		imageAlt,
+		hoverText,
+		overlayColor,
+		overlayOpacity,
+	} = attributes;
 	const [ isHovering, setIsHovering ] = useState( false );
 
 	const onSelectImage = ( media ) => {
@@ -68,7 +87,9 @@ export default function Edit( { attributes, setAttributes } ) {
 	} );
 
 	const overlayStyle = {
-		backgroundColor: `${overlayColor}${Math.round(overlayOpacity * 255).toString(16).padStart(2, '0')}`,
+		backgroundColor: `${ overlayColor }${ Math.round( overlayOpacity * 255 )
+			.toString( 16 )
+			.padStart( 2, '0' ) }`,
 	};
 
 	// If no image is selected, show the upload placeholder
@@ -78,7 +99,10 @@ export default function Edit( { attributes, setAttributes } ) {
 				<Placeholder
 					icon="format-image"
 					label={ __( 'Image Text Hover Block', 'saai-blocks' ) }
-					instructions={ __( 'Upload an image to get started', 'saai-blocks' ) }
+					instructions={ __(
+						'Upload an image to get started',
+						'saai-blocks'
+					) }
 				>
 					<MediaUploadCheck>
 						<MediaUpload
@@ -100,7 +124,10 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Overlay Settings', 'saai-blocks' ) } initialOpen={ true }>
+				<PanelBody
+					title={ __( 'Overlay Settings', 'saai-blocks' ) }
+					initialOpen={ true }
+				>
 					<p style={ { marginBottom: '8px', fontWeight: 500 } }>
 						{ __( 'Overlay Color', 'saai-blocks' ) }
 					</p>
@@ -126,9 +153,15 @@ export default function Edit( { attributes, setAttributes } ) {
 					onMouseLeave={ () => setIsHovering( false ) }
 				>
 					<div className="saai-image-wrapper">
-						<img src={ imageUrl } alt={ imageAlt } className="saai-hover-image" />
-						<div 
-							className={ `saai-hover-overlay ${ isHovering ? 'is-hovering' : '' }` }
+						<img
+							src={ imageUrl }
+							alt={ imageAlt }
+							className="saai-hover-image"
+						/>
+						<div
+							className={ `saai-hover-overlay ${
+								isHovering ? 'is-hovering' : ''
+							}` }
 							style={ overlayStyle }
 						>
 							<RichText
@@ -136,7 +169,10 @@ export default function Edit( { attributes, setAttributes } ) {
 								className="saai-hover-text"
 								value={ hoverText }
 								onChange={ onChangeHoverText }
-								placeholder={ __( 'Add hover text...', 'saai-blocks' ) }
+								placeholder={ __(
+									'Add hover text…',
+									'saai-blocks'
+								) }
 							/>
 						</div>
 					</div>
@@ -147,13 +183,20 @@ export default function Edit( { attributes, setAttributes } ) {
 								allowedTypes={ [ 'image' ] }
 								value={ imageId }
 								render={ ( { open } ) => (
-									<Button variant="secondary" onClick={ open }>
+									<Button
+										variant="secondary"
+										onClick={ open }
+									>
 										{ __( 'Change Image', 'saai-blocks' ) }
 									</Button>
 								) }
 							/>
 						</MediaUploadCheck>
-						<Button variant="tertiary" isDestructive onClick={ onRemoveImage }>
+						<Button
+							variant="tertiary"
+							isDestructive
+							onClick={ onRemoveImage }
+						>
 							{ __( 'Remove Image', 'saai-blocks' ) }
 						</Button>
 					</div>

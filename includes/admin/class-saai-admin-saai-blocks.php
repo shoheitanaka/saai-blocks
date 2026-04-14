@@ -89,8 +89,8 @@ class SAAI_Admin_SAAI_Blocks {
 			return;
 		}
 
-		$bs_script_path       = SAAI_BLOCKS_PATH . '/assets/build/saai/admin/blocks-settings.js';
-		$bs_script_asset_path = SAAI_BLOCKS_PATH . '/assets/build/saai/admin/blocks-settings.asset.php';
+		$bs_script_path       = \SAAI_BLOCKS_PATH . '/assets/build/saai/admin/blocks-settings.js';
+		$bs_script_asset_path = \SAAI_BLOCKS_PATH . '/assets/build/saai/admin/blocks-settings.asset.php';
 
 		if ( ! file_exists( $bs_script_path ) ) {
 			return;
@@ -100,13 +100,13 @@ class SAAI_Admin_SAAI_Blocks {
 			? require $bs_script_asset_path
 			: array(
 				'dependencies' => array(),
-				'version'      => SAAI_BLOCKS_VERSION,
+				'version'      => \SAAI_BLOCKS_VERSION,
 			);
 
 		// Enqueue overview CSS for shared admin layout styles.
 		wp_enqueue_script(
 			$this->sub_menu_slug,
-			SAAI_BLOCKS_URL . 'assets/build/saai/admin/blocks-settings.js',
+			\SAAI_BLOCKS_URL . 'assets/build/saai/admin/blocks-settings.js',
 			$bs_script_asset['dependencies'],
 			$bs_script_asset['version'],
 			true
@@ -115,15 +115,15 @@ class SAAI_Admin_SAAI_Blocks {
 		wp_set_script_translations(
 			$this->sub_menu_slug,
 			'saai-blocks',
-			SAAI_BLOCKS_PATH . '/i18n'
+			\SAAI_BLOCKS_PATH . '/i18n'
 		);
 
 		wp_enqueue_style(
 			$this->sub_menu_slug,
-			SAAI_BLOCKS_URL . 'assets/build/saai/admin/blocks-settings.css',
+			\SAAI_BLOCKS_URL . 'assets/build/saai/admin/blocks-settings.css',
 			array( 'wp-components' ),
-			file_exists( SAAI_BLOCKS_PATH . '/assets/build/saai/admin/blocks-settings.css' )
-				? filemtime( SAAI_BLOCKS_PATH . '/assets/build/saai/admin/blocks-settings.css' )
+			file_exists( \SAAI_BLOCKS_PATH . '/assets/build/saai/admin/blocks-settings.css' )
+				? filemtime( \SAAI_BLOCKS_PATH . '/assets/build/saai/admin/blocks-settings.css' )
 				: '1.0.0'
 		);
 	}

@@ -1,4 +1,3 @@
-
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -38,4 +37,3 @@ registerBlockType( metadata.name, {
 	 */
 	save,
 } );
-	

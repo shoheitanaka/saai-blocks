@@ -1,6 +1,18 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, Button, ToggleControl, TextControl, ColorPicker, Placeholder } from '@wordpress/components';
+import {
+	useBlockProps,
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
+} from '@wordpress/block-editor';
+import {
+	PanelBody,
+	Button,
+	ToggleControl,
+	TextControl,
+	ColorPicker,
+	Placeholder,
+} from '@wordpress/components';
 import './editor.scss';
 
 export default function Edit( { attributes, setAttributes } ) {
@@ -18,7 +30,7 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const blockProps = useBlockProps( {
 		style: {
-			backgroundColor: backgroundColor,
+			backgroundColor,
 		},
 	} );
 
@@ -26,7 +38,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( {
 			glbUrl: media.url,
 			glbId: media.id,
-			glbFilename: media.filename || media.title || media.url.split( '/' ).pop(),
+			glbFilename:
+				media.filename || media.title || media.url.split( '/' ).pop(),
 		} );
 	};
 
@@ -42,7 +55,8 @@ export default function Edit( { attributes, setAttributes } ) {
 		setAttributes( {
 			usdzUrl: media.url,
 			usdzId: media.id,
-			usdzFilename: media.filename || media.title || media.url.split( '/' ).pop(),
+			usdzFilename:
+				media.filename || media.title || media.url.split( '/' ).pop(),
 		} );
 	};
 
@@ -57,17 +71,24 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Model Settings', 'saai-blocks' ) } initialOpen={ true }>
+				<PanelBody
+					title={ __( 'Model Settings', 'saai-blocks' ) }
+					initialOpen={ true }
+				>
 					<TextControl
 						label={ __( 'Viewer Height', 'saai-blocks' ) }
 						help={ __( 'e.g. 400px, 50vh, 300px', 'saai-blocks' ) }
 						value={ viewerHeight }
-						onChange={ ( value ) => setAttributes( { viewerHeight: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { viewerHeight: value } )
+						}
 					/>
 					<ToggleControl
 						label={ __( 'Auto-Rotate', 'saai-blocks' ) }
 						checked={ autoRotate }
-						onChange={ ( value ) => setAttributes( { autoRotate: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { autoRotate: value } )
+						}
 					/>
 					<div style={ { marginTop: '16px' } }>
 						<p style={ { marginBottom: '8px', fontWeight: 500 } }>
@@ -75,12 +96,17 @@ export default function Edit( { attributes, setAttributes } ) {
 						</p>
 						<ColorPicker
 							color={ backgroundColor }
-							onChange={ ( value ) => setAttributes( { backgroundColor: value } ) }
+							onChange={ ( value ) =>
+								setAttributes( { backgroundColor: value } )
+							}
 							enableAlpha
 						/>
 					</div>
 				</PanelBody>
-				<PanelBody title={ __( 'GLB File', 'saai-blocks' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'GLB File', 'saai-blocks' ) }
+					initialOpen={ false }
+				>
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={ onSelectGlb }
@@ -90,18 +116,38 @@ export default function Edit( { attributes, setAttributes } ) {
 									{ glbUrl ? (
 										<div className="saai-3d-model-viewer-file-info">
 											<p className="saai-3d-model-viewer-file-name">
-												{ glbFilename || glbUrl.split( '/' ).pop() }
+												{ glbFilename ||
+													glbUrl.split( '/' ).pop() }
 											</p>
-											<Button variant="secondary" onClick={ open } style={ { marginRight: '8px' } }>
-												{ __( 'Replace GLB', 'saai-blocks' ) }
+											<Button
+												variant="secondary"
+												onClick={ open }
+												style={ { marginRight: '8px' } }
+											>
+												{ __(
+													'Replace GLB',
+													'saai-blocks'
+												) }
 											</Button>
-											<Button isDestructive onClick={ onRemoveGlb }>
-												{ __( 'Remove', 'saai-blocks' ) }
+											<Button
+												isDestructive
+												onClick={ onRemoveGlb }
+											>
+												{ __(
+													'Remove',
+													'saai-blocks'
+												) }
 											</Button>
 										</div>
 									) : (
-										<Button variant="secondary" onClick={ open }>
-											{ __( 'Upload GLB File', 'saai-blocks' ) }
+										<Button
+											variant="secondary"
+											onClick={ open }
+										>
+											{ __(
+												'Upload GLB File',
+												'saai-blocks'
+											) }
 										</Button>
 									) }
 								</div>
@@ -109,7 +155,10 @@ export default function Edit( { attributes, setAttributes } ) {
 						/>
 					</MediaUploadCheck>
 				</PanelBody>
-				<PanelBody title={ __( 'USDZ File (iOS AR)', 'saai-blocks' ) } initialOpen={ false }>
+				<PanelBody
+					title={ __( 'USDZ File (iOS AR)', 'saai-blocks' ) }
+					initialOpen={ false }
+				>
 					<MediaUploadCheck>
 						<MediaUpload
 							onSelect={ onSelectUsdz }
@@ -119,18 +168,38 @@ export default function Edit( { attributes, setAttributes } ) {
 									{ usdzUrl ? (
 										<div className="saai-3d-model-viewer-file-info">
 											<p className="saai-3d-model-viewer-file-name">
-												{ usdzFilename || usdzUrl.split( '/' ).pop() }
+												{ usdzFilename ||
+													usdzUrl.split( '/' ).pop() }
 											</p>
-											<Button variant="secondary" onClick={ open } style={ { marginRight: '8px' } }>
-												{ __( 'Replace USDZ', 'saai-blocks' ) }
+											<Button
+												variant="secondary"
+												onClick={ open }
+												style={ { marginRight: '8px' } }
+											>
+												{ __(
+													'Replace USDZ',
+													'saai-blocks'
+												) }
 											</Button>
-											<Button isDestructive onClick={ onRemoveUsdz }>
-												{ __( 'Remove', 'saai-blocks' ) }
+											<Button
+												isDestructive
+												onClick={ onRemoveUsdz }
+											>
+												{ __(
+													'Remove',
+													'saai-blocks'
+												) }
 											</Button>
 										</div>
 									) : (
-										<Button variant="secondary" onClick={ open }>
-											{ __( 'Upload USDZ File', 'saai-blocks' ) }
+										<Button
+											variant="secondary"
+											onClick={ open }
+										>
+											{ __(
+												'Upload USDZ File',
+												'saai-blocks'
+											) }
 										</Button>
 									) }
 								</div>
@@ -145,7 +214,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					<Placeholder
 						icon="format-image"
 						label={ __( '3D Model Viewer', 'saai-blocks' ) }
-						instructions={ __( 'Upload a GLB file to display a 3D model. Optionally add a USDZ file for iOS AR support.', 'saai-blocks' ) }
+						instructions={ __(
+							'Upload a GLB file to display a 3D model. Optionally add a USDZ file for iOS AR support.',
+							'saai-blocks'
+						) }
 					>
 						<div className="saai-3d-model-viewer__upload-buttons">
 							<MediaUploadCheck>
@@ -153,8 +225,14 @@ export default function Edit( { attributes, setAttributes } ) {
 									onSelect={ onSelectGlb }
 									value={ glbId }
 									render={ ( { open } ) => (
-										<Button variant="primary" onClick={ open }>
-											{ __( 'Upload GLB File', 'saai-blocks' ) }
+										<Button
+											variant="primary"
+											onClick={ open }
+										>
+											{ __(
+												'Upload GLB File',
+												'saai-blocks'
+											) }
 										</Button>
 									) }
 								/>
@@ -164,8 +242,14 @@ export default function Edit( { attributes, setAttributes } ) {
 									onSelect={ onSelectUsdz }
 									value={ usdzId }
 									render={ ( { open } ) => (
-										<Button variant="secondary" onClick={ open }>
-											{ __( 'Upload USDZ File (optional)', 'saai-blocks' ) }
+										<Button
+											variant="secondary"
+											onClick={ open }
+										>
+											{ __(
+												'Upload USDZ File (optional)',
+												'saai-blocks'
+											) }
 										</Button>
 									) }
 								/>
@@ -187,7 +271,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							style={ {
 								width: '100%',
 								height: '100%',
-								backgroundColor: backgroundColor,
+								backgroundColor,
 							} }
 						></model-viewer>
 					</div>

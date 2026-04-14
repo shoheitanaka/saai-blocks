@@ -1,4 +1,3 @@
-
 /**
  * Use this file for JavaScript code that you want to run in the front-end
  * on posts/pages that contain this block.
@@ -22,7 +21,9 @@
  */
 
 document.addEventListener( 'DOMContentLoaded', function () {
-	const blocks = document.querySelectorAll( '.wp-block-saai-block-saai-image-text-hover' );
+	const blocks = document.querySelectorAll(
+		'.wp-block-saai-block-saai-image-text-hover'
+	);
 
 	blocks.forEach( function ( block ) {
 		const container = block.querySelector( '.saai-image-wrapper' );
@@ -33,7 +34,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		}
 
 		// Check if device supports hover
-		const supportsHover = window.matchMedia( '(hover: hover) and (pointer: fine)' ).matches;
+		const supportsHover = window.matchMedia(
+			'(hover: hover) and (pointer: fine)'
+		).matches;
 
 		if ( ! supportsHover ) {
 			// Touch device: toggle overlay on tap
@@ -76,7 +79,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		container.addEventListener( 'keydown', function ( e ) {
 			if ( e.key === 'Enter' || e.key === ' ' ) {
 				e.preventDefault();
-				const isCurrentlyActive = overlay.classList.contains( 'is-active' );
+				const isCurrentlyActive =
+					overlay.classList.contains( 'is-active' );
 
 				if ( isCurrentlyActive ) {
 					overlay.classList.remove( 'is-active' );
@@ -91,4 +95,3 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} );
 	} );
 } );
-	

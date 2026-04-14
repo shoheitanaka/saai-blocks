@@ -56,6 +56,6 @@ $saai_structured_data = SAAI_Blocks::get_breadcrumb_structured_data( $saai_trail
 		<?php endforeach; ?>
 	</ol>
 	<script type="application/ld+json">
-		<?php echo wp_kses_post( $saai_structured_data ); ?>
+		<?php echo $saai_structured_data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_json_encode() with JSON_HEX_TAG is used in get_breadcrumb_structured_data(). ?>
 	</script>
 </nav>

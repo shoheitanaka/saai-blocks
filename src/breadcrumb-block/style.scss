@@ -5,9 +5,9 @@
  */
 
 .wp-block-saai-blocks {
-	--breadcrumb-text-color: #333333;
+	--breadcrumb-text-color: #333;
 	--breadcrumb-link-color: #0073aa;
-	
+
 	font-size: 0.875rem;
 	line-height: 1.5;
 }
@@ -53,14 +53,15 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+
 	.wp-block-saai-blocks {
 		font-size: 0.8125rem;
 	}
-	
+
 	.saai-breadcrumb-list {
 		gap: 0.375rem;
 	}
-	
+
 	.saai-breadcrumb-item {
 		gap: 0.375rem;
 	}

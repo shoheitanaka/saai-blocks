@@ -1,4 +1,3 @@
-
 /**
  * Use this file for JavaScript code that you want to run in the front-end
  * on posts/pages that contain this block.
@@ -10,9 +9,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	);
 
 	galleries.forEach( function ( gallery ) {
-		const images = gallery.querySelectorAll( '.image-gallery-swiper__image' );
-		const prevButton = gallery.querySelector( '.image-gallery-swiper__nav--prev' );
-		const nextButton = gallery.querySelector( '.image-gallery-swiper__nav--next' );
+		const images = gallery.querySelectorAll(
+			'.image-gallery-swiper__image'
+		);
+		const prevButton = gallery.querySelector(
+			'.image-gallery-swiper__nav--prev'
+		);
+		const nextButton = gallery.querySelector(
+			'.image-gallery-swiper__nav--next'
+		);
 		const dots = gallery.querySelectorAll( '.image-gallery-swiper__dot' );
 		let currentIndex = 0;
 		let startX = 0;
@@ -60,11 +65,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} );
 
 		// Touch and mouse drag support
-		const imagesContainer = gallery.querySelector( '.image-gallery-swiper__images' );
+		const imagesContainer = gallery.querySelector(
+			'.image-gallery-swiper__images'
+		);
 
 		function handleStart( e ) {
 			isDragging = true;
-			startX = e.type.includes( 'mouse' ) ? e.pageX : e.touches[ 0 ].pageX;
+			startX = e.type.includes( 'mouse' )
+				? e.pageX
+				: e.touches[ 0 ].pageX;
 		}
 
 		function handleMove( e ) {
@@ -80,7 +89,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			}
 			isDragging = false;
 
-			const endX = e.type.includes( 'mouse' ) ? e.pageX : e.changedTouches[ 0 ].pageX;
+			const endX = e.type.includes( 'mouse' )
+				? e.pageX
+				: e.changedTouches[ 0 ].pageX;
 			const diff = startX - endX;
 			const threshold = 50;
 

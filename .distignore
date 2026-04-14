@@ -18,7 +18,9 @@ composer.lock
 .wp-env.override.json
 .editorconfig
 .eslintrc
+.eslintrc.json
 .stylelintrc
+.stylelintrc.json
 .phpcs.xml
 phpcs.xml
 phpunit.xml
@@ -31,6 +33,7 @@ phpunit.xml
 # Docs / meta (keep readme.txt for wp.org, exclude others)
 CLAUDE.md
 README.md
+README.txt
 
 # OS / editor
 .DS_Store
