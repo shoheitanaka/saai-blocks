@@ -6,7 +6,8 @@
  * Version: 1.0.0
  * Author: Shohei Tanaka
  * Author URI: https://shinobiashi.ai/
- * License: GPL3
+ * License: GPL-2.0-or-later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: saai-blocks
  * Domain Path: /i18n
  * Requires at least: 6.8
