@@ -1,4 +1,3 @@
-
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
@@ -43,7 +42,7 @@
 	},
 	"supports": {
 		"html": false,
-		"align": ["wide", "full"]
+		"align": [ "wide", "full" ]
 	},
 	"textdomain": "saai-blocks",
 	"editorScript": "file:./index.js",

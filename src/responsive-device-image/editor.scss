@@ -6,6 +6,7 @@
  */
 
 .wp-block-saai-block-saai-responsive-device-image {
+
 	.responsive-device-image-editor {
 		display: flex;
 		flex-direction: column;
@@ -54,7 +55,14 @@
 				border-radius: 4px;
 				overflow: hidden;
 
+				img {
+					display: block;
+					width: 100%;
+					height: auto;
+				}
+
 				&.fallback {
+
 					img {
 						opacity: 0.4;
 						filter: grayscale(100%);
@@ -73,12 +81,6 @@
 						font-weight: 500;
 						white-space: nowrap;
 					}
-				}
-
-				img {
-					display: block;
-					width: 100%;
-					height: auto;
 				}
 
 				.image-actions {

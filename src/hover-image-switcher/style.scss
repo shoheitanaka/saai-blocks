@@ -49,7 +49,7 @@
 		top: var(--arrow-vertical-position, 50%);
 		transform: translateY(-50%);
 		background: rgba(0, 0, 0, 0.5);
-		color: white;
+		color: #fff;
 		border: none;
 		width: 40px;
 		height: 40px;
@@ -77,6 +77,7 @@
 	}
 
 	&.arrows-outside {
+
 		.image-gallery-swiper__container {
 			padding-top: 60px;
 		}
@@ -108,6 +109,7 @@
 	}
 
 	&.dots-outside {
+
 		.image-gallery-swiper__container {
 			padding-bottom: 40px;
 		}
@@ -147,11 +149,12 @@
 		}
 
 		&.is-active {
-			background: white;
+			background: #fff;
 		}
 	}
 
 	&.indicator-bars {
+
 		.image-gallery-swiper__dot {
 			width: 30px;
 			height: 4px;
@@ -163,7 +166,7 @@
 			}
 
 			&.is-active {
-				background: white;
+				background: #fff;
 			}
 		}
 

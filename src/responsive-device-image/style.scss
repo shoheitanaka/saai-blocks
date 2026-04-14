@@ -14,7 +14,7 @@
 .responsive-device-image {
 	position: relative;
 	width: 100%;
-	
+
 	img {
 		display: block;
 		width: 100%;
@@ -29,6 +29,7 @@
 
 	/* Smartphone: 767px and below */
 	@media (max-width: 767px) {
+
 		.responsive-device-image__smartphone {
 			display: block;
 		}
@@ -36,6 +37,7 @@
 
 	/* Tablet: 768px to 1023px */
 	@media (min-width: 768px) and (max-width: 1023px) {
+
 		.responsive-device-image__tablet {
 			display: block;
 		}
@@ -43,6 +45,7 @@
 
 	/* PC: 1024px and above */
 	@media (min-width: 1024px) {
+
 		.responsive-device-image__pc {
 			display: block;
 		}

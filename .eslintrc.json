@@ -1,0 +1,16 @@
+{
+	"extends": [ "plugin:@wordpress/eslint-plugin/recommended" ],
+	"rules": {
+		"import/no-extraneous-dependencies": "off",
+		"jsdoc/require-param": "off",
+		"jsdoc/check-param-names": "off"
+	},
+	"overrides": [
+		{
+			"files": [ "scripts/**/*.js" ],
+			"rules": {
+				"no-console": "off"
+			}
+		}
+	]
+}

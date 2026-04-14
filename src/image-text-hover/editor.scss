@@ -6,6 +6,7 @@
  */
 
 .wp-block-saai-block-saai-image-text-hover {
+
 	.saai-image-text-hover-container {
 		border: 2px dashed #ccc;
 		border-radius: 4px;
@@ -66,10 +67,11 @@
 
 /* Editor preview hover indicator */
 .block-editor-block-list__block.is-selected {
+
 	.wp-block-saai-block-saai-image-text-hover {
+
 		.saai-image-text-hover-container {
 			border-color: #007cba;
 		}
 	}
 }
-	

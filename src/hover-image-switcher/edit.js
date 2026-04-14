@@ -1,4 +1,3 @@
-
 /**
  * Retrieves the translation of text.
  *
@@ -12,8 +11,20 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, MediaPlaceholder, BlockControls, MediaReplaceFlow, InspectorControls } from '@wordpress/block-editor';
-import { ToolbarGroup, ToolbarButton, PanelBody, RangeControl, Button, ToggleControl } from '@wordpress/components';
+import {
+	useBlockProps,
+	MediaPlaceholder,
+	BlockControls,
+	MediaReplaceFlow,
+	InspectorControls,
+} from '@wordpress/block-editor';
+import {
+	ToolbarGroup,
+	PanelBody,
+	RangeControl,
+	Button,
+	ToggleControl,
+} from '@wordpress/components';
 import { useState } from '@wordpress/element';
 
 /**
@@ -58,7 +69,9 @@ export default function Edit( { attributes, setAttributes } ) {
 	};
 
 	const removeImage = ( indexToRemove ) => {
-		const newImages = images.filter( ( img, index ) => index !== indexToRemove );
+		const newImages = images.filter(
+			( img, index ) => index !== indexToRemove
+		);
 		setAttributes( { images: newImages } );
 		if ( currentIndex >= newImages.length && newImages.length > 0 ) {
 			setCurrentIndex( newImages.length - 1 );
@@ -80,17 +93,23 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	const prevImage = () => {
 		if ( images.length > 0 ) {
-			setCurrentIndex( ( currentIndex - 1 + images.length ) % images.length );
+			setCurrentIndex(
+				( currentIndex - 1 + images.length ) % images.length
+			);
 		}
 	};
 
 	const blockProps = useBlockProps( {
-		className: `image-gallery-swiper ${arrowsOutside ? 'arrows-outside' : ''} ${dotsOutside ? 'dots-outside' : ''} ${indicatorStyle === 'bars' ? 'indicator-bars' : 'indicator-dots'}`,
+		className: `image-gallery-swiper ${
+			arrowsOutside ? 'arrows-outside' : ''
+		} ${ dotsOutside ? 'dots-outside' : '' } ${
+			indicatorStyle === 'bars' ? 'indicator-bars' : 'indicator-dots'
+		}`,
 		style: {
-			'--gallery-width': `${width}px`,
-			'--gallery-height': `${height}px`,
-			'--arrow-vertical-position': `${arrowVerticalPosition}%`,
-			'--arrow-horizontal-position': `${arrowHorizontalPosition}px`,
+			'--gallery-width': `${ width }px`,
+			'--gallery-height': `${ height }px`,
+			'--arrow-vertical-position': `${ arrowVerticalPosition }%`,
+			'--arrow-horizontal-position': `${ arrowHorizontalPosition }px`,
 		},
 	} );
 
@@ -101,7 +120,10 @@ export default function Edit( { attributes, setAttributes } ) {
 					icon="format-gallery"
 					labels={ {
 						title: __( 'Image Gallery Swiper', 'saai-blocks' ),
-						instructions: __( 'Upload or select images from your media library.', 'saai-blocks' ),
+						instructions: __(
+							'Upload or select images from your media library.',
+							'saai-blocks'
+						),
 					} }
 					onSelect={ onSelectImages }
 					accept="image/*"
@@ -119,7 +141,9 @@ export default function Edit( { attributes, setAttributes } ) {
 					<RangeControl
 						label={ __( 'Width', 'saai-blocks' ) }
 						value={ width }
-						onChange={ ( value ) => setAttributes( { width: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { width: value } )
+						}
 						min={ 100 }
 						max={ 1000 }
 						step={ 10 }
@@ -127,7 +151,9 @@ export default function Edit( { attributes, setAttributes } ) {
 					<RangeControl
 						label={ __( 'Height', 'saai-blocks' ) }
 						value={ height }
-						onChange={ ( value ) => setAttributes( { height: value } ) }
+						onChange={ ( value ) =>
+							setAttributes( { height: value } )
+						}
 						min={ 100 }
 						max={ 1000 }
 						step={ 10 }
@@ -137,51 +163,106 @@ export default function Edit( { attributes, setAttributes } ) {
 					<ToggleControl
 						label={ __( 'Place Arrows Outside', 'saai-blocks' ) }
 						checked={ arrowsOutside }
-						onChange={ ( value ) => setAttributes( { arrowsOutside: value } ) }
-						help={ __( 'Position navigation arrows above the gallery', 'saai-blocks' ) }
+						onChange={ ( value ) =>
+							setAttributes( { arrowsOutside: value } )
+						}
+						help={ __(
+							'Position navigation arrows above the gallery',
+							'saai-blocks'
+						) }
 					/>
 					<ToggleControl
 						label={ __( 'Place Dots Outside', 'saai-blocks' ) }
 						checked={ dotsOutside }
-						onChange={ ( value ) => setAttributes( { dotsOutside: value } ) }
-						help={ __( 'Position dot indicators below the gallery', 'saai-blocks' ) }
+						onChange={ ( value ) =>
+							setAttributes( { dotsOutside: value } )
+						}
+						help={ __(
+							'Position dot indicators below the gallery',
+							'saai-blocks'
+						) }
 					/>
 				</PanelBody>
 				<PanelBody title={ __( 'Indicator Style', 'saai-blocks' ) }>
 					<ToggleControl
 						label={ __( 'Use Bar Style', 'saai-blocks' ) }
 						checked={ indicatorStyle === 'bars' }
-						onChange={ ( value ) => setAttributes( { indicatorStyle: value ? 'bars' : 'dots' } ) }
-						help={ __( 'Switch between dot and bar indicators', 'saai-blocks' ) }
+						onChange={ ( value ) =>
+							setAttributes( {
+								indicatorStyle: value ? 'bars' : 'dots',
+							} )
+						}
+						help={ __(
+							'Switch between dot and bar indicators',
+							'saai-blocks'
+						) }
 					/>
 					{ ! arrowsOutside && (
 						<>
 							<RangeControl
-								label={ __( 'Arrow Vertical Position (%)', 'saai-blocks' ) }
+								label={ __(
+									'Arrow Vertical Position (%)',
+									'saai-blocks'
+								) }
 								value={ arrowVerticalPosition }
-								onChange={ ( value ) => setAttributes( { arrowVerticalPosition: value } ) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										arrowVerticalPosition: value,
+									} )
+								}
 								min={ 0 }
 								max={ 100 }
 								step={ 1 }
-								help={ __( 'Adjust the vertical position of the navigation arrows (0% = top, 50% = center, 100% = bottom)', 'saai-blocks' ) }
+								help={ __(
+									'Adjust the vertical position of the navigation arrows (0% = top, 50% = center, 100% = bottom)',
+									'saai-blocks'
+								) }
 							/>
 							<RangeControl
-								label={ __( 'Arrow Horizontal Distance (px)', 'saai-blocks' ) }
+								label={ __(
+									'Arrow Horizontal Distance (px)',
+									'saai-blocks'
+								) }
 								value={ arrowHorizontalPosition }
-								onChange={ ( value ) => setAttributes( { arrowHorizontalPosition: value } ) }
+								onChange={ ( value ) =>
+									setAttributes( {
+										arrowHorizontalPosition: value,
+									} )
+								}
 								min={ 0 }
 								max={ 100 }
 								step={ 1 }
-								help={ __( 'Distance from the left/right edge of the gallery', 'saai-blocks' ) }
+								help={ __(
+									'Distance from the left/right edge of the gallery',
+									'saai-blocks'
+								) }
 							/>
 						</>
 					) }
 				</PanelBody>
 				<PanelBody title={ __( 'Images', 'saai-blocks' ) }>
 					{ images.map( ( image, index ) => (
-						<div key={ image.id } style={ { marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '10px' } }>
-							<img src={ image.url } alt={ image.alt } style={ { width: '50px', height: '50px', objectFit: 'cover' } } />
-							<span>{ __( 'Image', 'saai-blocks' ) } { index + 1 }</span>
+						<div
+							key={ image.id }
+							style={ {
+								marginBottom: '10px',
+								display: 'flex',
+								alignItems: 'center',
+								gap: '10px',
+							} }
+						>
+							<img
+								src={ image.url }
+								alt={ image.alt }
+								style={ {
+									width: '50px',
+									height: '50px',
+									objectFit: 'cover',
+								} }
+							/>
+							<span>
+								{ __( 'Image', 'saai-blocks' ) } { index + 1 }
+							</span>
 							<Button
 								isSmall
 								onClick={ () => removeImage( index ) }
@@ -192,7 +273,9 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ index > 0 && (
 								<Button
 									isSmall
-									onClick={ () => moveImage( index, index - 1 ) }
+									onClick={ () =>
+										moveImage( index, index - 1 )
+									}
 									variant="secondary"
 								>
 									↑
@@ -201,7 +284,9 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ index < images.length - 1 && (
 								<Button
 									isSmall
-									onClick={ () => moveImage( index, index + 1 ) }
+									onClick={ () =>
+										moveImage( index, index + 1 )
+									}
 									variant="secondary"
 								>
 									↓
@@ -231,8 +316,14 @@ export default function Edit( { attributes, setAttributes } ) {
 								key={ image.id }
 								src={ image.url }
 								alt={ image.alt }
-								className={ `image-gallery-swiper__image ${ index === currentIndex ? 'is-active' : '' }` }
-								style={ { transform: `translateX(${ ( index - currentIndex ) * 100 }%)` } }
+								className={ `image-gallery-swiper__image ${
+									index === currentIndex ? 'is-active' : ''
+								}` }
+								style={ {
+									transform: `translateX(${
+										( index - currentIndex ) * 100
+									}%)`,
+								} }
 							/>
 						) ) }
 					</div>
@@ -243,7 +334,10 @@ export default function Edit( { attributes, setAttributes } ) {
 								type="button"
 								className="image-gallery-swiper__nav image-gallery-swiper__nav--prev"
 								onClick={ prevImage }
-								aria-label={ __( 'Previous image', 'saai-blocks' ) }
+								aria-label={ __(
+									'Previous image',
+									'saai-blocks'
+								) }
 							>
 								‹
 							</button>
@@ -261,9 +355,19 @@ export default function Edit( { attributes, setAttributes } ) {
 									<button
 										key={ image.id }
 										type="button"
-										className={ `image-gallery-swiper__dot ${ index === currentIndex ? 'is-active' : '' }` }
-										onClick={ () => setCurrentIndex( index ) }
-										aria-label={ __( 'Go to image', 'saai-blocks' ) + ' ' + ( index + 1 ) }
+										className={ `image-gallery-swiper__dot ${
+											index === currentIndex
+												? 'is-active'
+												: ''
+										}` }
+										onClick={ () =>
+											setCurrentIndex( index )
+										}
+										aria-label={
+											__( 'Go to image', 'saai-blocks' ) +
+											' ' +
+											( index + 1 )
+										}
 									/>
 								) ) }
 							</div>

@@ -93,7 +93,9 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+
 	.wp-block-saai-block-saai-image-text-hover {
+
 		.saai-hover-overlay {
 			padding: 1.5rem;
 		}
@@ -105,7 +107,9 @@
 }
 
 @media (max-width: 480px) {
+
 	.wp-block-saai-block-saai-image-text-hover {
+
 		.saai-hover-overlay {
 			padding: 1rem;
 		}
@@ -118,7 +122,9 @@
 
 /* Touch device support - tap to toggle */
 @media (hover: none) and (pointer: coarse) {
+
 	.wp-block-saai-block-saai-image-text-hover {
+
 		.saai-image-wrapper {
 			cursor: pointer;
 		}

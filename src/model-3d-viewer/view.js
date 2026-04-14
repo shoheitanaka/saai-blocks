@@ -9,7 +9,7 @@ import '@google/model-viewer/dist/model-viewer.min.js';
 	 * so we just need to add lifecycle event listeners.
 	 */
 	function initModelViewers() {
-		var viewers = document.querySelectorAll(
+		const viewers = document.querySelectorAll(
 			'.wp-block-saai-blocks-model-3d-viewer model-viewer'
 		);
 
