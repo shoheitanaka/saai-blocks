@@ -1,0 +1,212 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# ================================================================
+# Job 1: JavaScript lint & build
+# Runs on Node 20 and 22 to catch version-specific issues.
+# ================================================================
+jobs:
+  js:
+    name: JS (Node ${{ matrix.node-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ["20.x", "22.x"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      # postinstall runs "composer install", skip it in CI — handled by phpcs job.
+      - name: Install JS dependencies
+        run: npm install --ignore-scripts
+
+      - name: Lint JS
+        run: npm run lint:js
+
+      - name: Lint CSS
+        run: npm run lint:css
+
+      - name: Build
+        run: npm run build
+
+      - name: Security audit (high+)
+        run: npm audit --audit-level=high
+
+# ================================================================
+# Job 2: PHP syntax check
+# php -l catches parse errors across supported PHP versions.
+# ================================================================
+  php-syntax:
+    name: PHP syntax (PHP ${{ matrix.php-version }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.2", "8.3"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: none
+          coverage: none
+
+      - name: Check PHP syntax
+        run: |
+          find . \
+            -name "*.php" \
+            -not -path "*/vendor/*" \
+            -not -path "*/node_modules/*" \
+            -not -path "*/assets/build/*" \
+            -print0 \
+          | xargs -0 -n1 php -l
+
+# ================================================================
+# Job 3: PHP CodeSniffer — WordPress Coding Standards
+# Fails on errors; suppresses warnings (hook-callback $_param etc.)
+# ================================================================
+  phpcs:
+    name: PHPCS (WordPress CS)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          tools: composer
+          coverage: none
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/composer
+          key: composer-${{ hashFiles('composer.lock') }}
+          restore-keys: composer-
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Run PHPCS
+        run: |
+          vendor/bin/phpcs \
+            --standard=WordPress \
+            --extensions=php \
+            --ignore=vendor,node_modules,assets/build \
+            --warning-severity=0 \
+            saai-blocks.php includes/ src/
+
+# ================================================================
+# Job 4: WP Plugin Check
+# Runs after the JS build job so built assets are available.
+# Uses MySQL service for a real WordPress environment.
+# ================================================================
+  plugin-check:
+    name: Plugin Check
+    runs-on: ubuntu-latest
+    needs: [js]
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wp_ci
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+          cache: npm
+
+      - name: Install JS dependencies
+        run: npm install --ignore-scripts
+
+      - name: Build plugin assets
+        run: npm run build
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: mysqli
+          tools: none
+          coverage: none
+
+      - name: Install WP-CLI
+        run: |
+          curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+          chmod +x wp-cli.phar
+          sudo mv wp-cli.phar /usr/local/bin/wp
+
+      - name: Set up WordPress
+        run: |
+          mkdir -p /tmp/wordpress
+          cd /tmp/wordpress
+          wp core download --allow-root --quiet
+          wp config create \
+            --allow-root \
+            --dbname=wp_ci \
+            --dbuser=root \
+            --dbpass=root \
+            --dbhost=127.0.0.1 \
+            --quiet
+          wp core install \
+            --allow-root \
+            --url=http://localhost \
+            --title="CI Test" \
+            --admin_user=admin \
+            --admin_password=password \
+            --admin_email=admin@example.com \
+            --skip-email \
+            --quiet
+
+      - name: Copy plugin into WordPress
+        run: |
+          mkdir -p /tmp/wordpress/wp-content/plugins/saai-blocks
+          rsync -a \
+            --exclude-from='.distignore' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='.claude' \
+            . /tmp/wordpress/wp-content/plugins/saai-blocks/
+
+      - name: Install Plugin Check
+        run: |
+          cd /tmp/wordpress
+          wp plugin install plugin-check --activate --allow-root --quiet
+
+      - name: Run Plugin Check
+        run: |
+          cd /tmp/wordpress
+          wp plugin check saai-blocks \
+            --allow-root \
+            --format=table
