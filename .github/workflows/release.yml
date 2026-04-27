@@ -32,19 +32,14 @@ jobs:
               run: |
                   PLUGIN_SLUG="saai-blocks"
                   VERSION="${{ steps.version.outputs.VERSION }}"
-                  DEST="${PLUGIN_SLUG}-${VERSION}"
 
-                  # Copy the necessary files to the staging directory.
-                  mkdir -p "/tmp/${DEST}/${PLUGIN_SLUG}"
+                  mkdir -p "/tmp/${PLUGIN_SLUG}-${VERSION}/${PLUGIN_SLUG}"
                   rsync -a \
                     --exclude-from='.distignore' \
-                    . "/tmp/${DEST}/${PLUGIN_SLUG}/"
+                    . "/tmp/${PLUGIN_SLUG}-${VERSION}/${PLUGIN_SLUG}/"
 
-                  # Create zip
-                  cd "/tmp/${DEST}"
+                  cd "/tmp/${PLUGIN_SLUG}-${VERSION}"
                   zip -r "${PLUGIN_SLUG}-${VERSION}.zip" "${PLUGIN_SLUG}/"
-
-                  # Move to workspace
                   mv "${PLUGIN_SLUG}-${VERSION}.zip" "$GITHUB_WORKSPACE/"
 
             - name: Create GitHub Release
@@ -54,3 +49,19 @@ jobs:
                   tag_name: ${{ github.ref_name }}
                   generate_release_notes: true
                   files: saai-blocks-${{ steps.version.outputs.VERSION }}.zip
+
+            # ================================================================
+            # Deploy to WordPress.org SVN
+            # Required secrets:
+            #   WPORG_USERNAME — WordPress.org account username
+            #   WPORG_PASSWORD — WordPress.org application password
+            #     (generate at: https://profiles.wordpress.org/me/profile/applications/)
+            # ================================================================
+            - name: Deploy to WordPress.org
+              uses: 10up/action-wordpress-org-deploy@v2
+              with:
+                  SLUG: saai-blocks
+                  VERSION: ${{ steps.version.outputs.VERSION }}
+                  WPORG_USERNAME: ${{ secrets.WPORG_USERNAME }}
+                  WPORG_PASSWORD: ${{ secrets.WPORG_PASSWORD }}
+                  ASSETS_DIR: .wordpress-org

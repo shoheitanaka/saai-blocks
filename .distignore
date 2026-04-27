@@ -44,7 +44,12 @@ Thumbs.db
 # Logs
 logs/
 
+# WordPress.org plugin page assets (deployed separately to SVN assets/)
+.wordpress-org/
+
 # Ignore files with secrets
 .claude/
 .npmrc
 .distignore
+wporg-plugin-check.skill
+scripts/
