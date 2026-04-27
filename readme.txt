@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=info@art
 Tags: blocks, gutenberg, breadcrumb, gallery, swiper
 Requires at least: 6.8
 Tested up to: 6.9
-Stable tag: 1.0.1
+Stable tag: 1.0.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,9 +77,6 @@ The manual installation method involves downloading and uploading our plugin to 
 == Screenshots ==
 
 == Changelog ==
-
-= 1.0.1 =
-* Fix WordPress.org release workflow.
 
 = 1.0.0 =
 * Initial release.

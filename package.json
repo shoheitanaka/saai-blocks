@@ -1,6 +1,6 @@
 {
 	"name": "saai-blocks",
-	"version": "1.0.1",
+	"version": "1.0.0",
 	"author": "Shohei Tanaka",
 	"license": "GPL-3.0+",
 	"main": "build/index.js",
